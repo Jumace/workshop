@@ -1,0 +1,88 @@
+import { ContentInventory } from "@/components/lab-demos/content-inventory";
+
+export const metadata = {
+  title: "From MDX files to interactive pages",
+  description:
+    "How this site turns repo-owned MDX, metadata, generic routes, and TSX demos into blog and lab pages.",
+  publishedAt: "2026-07-18",
+  status: "published",
+  tags: ["nextjs", "mdx", "content"],
+  platform: "nextjs",
+  labStatus: "active",
+  series: {
+    slug: "building-the-workshop",
+    title: "Building the workshop",
+    order: 2,
+  },
+};
+
+This lab entry is the technical companion to [Opening the workshop](/blog/welcome).
+
+The blog post explains why this site exists. This lab entry shows the first content architecture: MDX files for authored content, generic App Router slug pages for public routes, and TSX components for interactive lab demos.
+
+## The experiment
+
+I wanted this site to be a playground for the Next.js App Router without needing a hand-written page for every post or experiment.
+
+Every blog post and lab entry lives as an MDX file. The app reads the content metadata, generates the public paths, and renders the correct page through generic slug routes.
+
+That matters especially for the lab. A lab entry might start as a written note, grow into a live TSX demo, become part of a series, or stay as a draft until it is ready.
+
+The route is generic. The content is specific.
+
+## Terms first
+
+This article assumes no knowledge of the repo or the framework, so here are the pieces involved:
+
+- **MDX** is Markdown that can also render React components.
+- **TSX** is TypeScript plus JSX, used here for React components and interactive demos.
+- **Metadata** is structured data exported by each MDX file.
+- **Slug** is the URL-friendly name used to generate the public route.
+
+## The content model
+
+Blog and lab entries both live as MDX files:
+
+```txt
+content/blog/welcome/index.mdx
+content/lab/content-architecture/index.mdx
+```
+
+The folder name becomes the public slug. Metadata decides whether an entry is published, draft, part of a series, included in RSS, listed in the sitemap, or shown as “Coming next.”
+
+Lab entries can also import TSX demos from a neutral component boundary:
+
+```txt
+components/lab-demos/
+```
+
+The article stays in `content/`. The supporting demo lives in `components/`. The MDX decides where the demo belongs, so the explanation and the technical artifact can live together without putting TSX inside the content directory.
+
+## Content inventory
+
+The demo below reads the actual MDX metadata in this repo and shows how each entry is treated by the site.
+
+<DemoFrame title="Content inventory">
+  <ContentInventory />
+</DemoFrame>
+
+## What this proves
+
+This first version gives the site a small content system without a CMS:
+
+- The repo is the source of truth.
+- MDX handles authored content.
+- Metadata controls publishing behavior.
+- TSX makes lab entries interactive when prose is not enough.
+
+For the exact implementation, see the [workshop repository](https://github.com/Jumace/workshop).
+
+<ContentLinkCard type="blog" slug="welcome" label="Companion blog post" />
+
+<Callout title="Boundary" tone="note">
+  The content system is part of the portable core. It should not require vendor-specific services to
+  build or render. Platform-specific experiments can live in the lab, but the blog and core content
+  model should remain movable.
+</Callout>
+
+This is only the first version. The content model will change as I use it. The point is to keep the structure simple enough to use, explicit enough to understand, and flexible enough to evolve with what I learn.

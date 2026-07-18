@@ -1,0 +1,39 @@
+.footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(100% - 2rem, var(--max-width));
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.inner p {
+  max-width: 34rem;
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.82rem;
+}
+
+.links a:hover {
+  color: var(--cyan);
+}
+
+@media (max-width: 700px) {
+  .inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,88 @@
+.inventory {
+  display: grid;
+  gap: 1rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.controls button {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.42rem 0.72rem;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.controls button[data-active="true"] {
+  border-color: rgba(55, 213, 255, 0.62);
+  color: var(--cyan);
+  background: rgba(55, 213, 255, 0.1);
+}
+
+.list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1rem;
+  background:
+    linear-gradient(135deg, rgba(55, 213, 255, 0.07), transparent 38%), rgba(255, 255, 255, 0.032);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.meta span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.18rem 0.48rem;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+}
+
+.meta span:first-child {
+  color: var(--cyan);
+}
+
+.card h3 {
+  margin: 0.75rem 0 0 !important;
+  font-size: 1.1rem !important;
+}
+
+.card dl {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.85rem 0 0;
+}
+
+.card dl div {
+  display: grid;
+  gap: 0.15rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.55rem;
+}
+
+.card dt {
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+}
+
+.card dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,76 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card,
+.empty {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 1.1rem;
+  background:
+    linear-gradient(135deg, rgba(55, 213, 255, 0.08), transparent 45%), rgba(255, 255, 255, 0.035);
+}
+
+.card::after {
+  position: absolute;
+  right: -2rem;
+  bottom: -2rem;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  content: "";
+  background: rgba(155, 124, 255, 0.12);
+}
+
+.kicker,
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.kicker span,
+.tags span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+}
+
+.kicker span:first-child {
+  color: var(--cyan);
+}
+
+.card h3,
+.empty h3 {
+  margin: 0.85rem 0 0;
+  font-size: 1.25rem;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.card h3 a:hover {
+  color: var(--cyan);
+}
+
+.card p,
+.empty p:not(.eyebrow) {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+}
+
+.tags {
+  margin-top: 1rem;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

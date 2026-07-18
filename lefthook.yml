@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: false
+  commands:
+    format:
+      glob: "*.{ts,tsx,js,jsx,json,md,mdx,css,yml,yaml}"
+      run: pnpm exec oxfmt --write {staged_files} && git add {staged_files}
+    spelling:
+      glob: "*.{md,mdx}"
+      run: pnpm exec cspell --no-progress {staged_files}
+    content:
+      run: pnpm validate:content
+    lint:
+      run: pnpm lint
+    typecheck:
+      run: pnpm typecheck

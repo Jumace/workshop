@@ -1,0 +1,20 @@
+export const metadata = {
+  title: "Vercel Flags with a local fallback",
+  description:
+    "A feature-flag lab that runs locally while documenting how to connect real Vercel Flags.",
+  publishedAt: "2026-07-18",
+  status: "draft",
+  tags: ["flags", "vercel", "experiments"],
+  platform: "vercel",
+  labStatus: "planned",
+};
+
+This experiment uses the Flags SDK shape without making Vercel credentials mandatory for local development.
+
+If the project is linked to Vercel and local environment values are pulled, the same flag can be managed through the Vercel dashboard. Without that setup, the demo falls back to `LAB_FLAGS_FALLBACK` or `cyan`.
+
+<LinkCard
+  href="https://vercel.com/docs/flags/vercel-flags/sdks/flags-sdk"
+  title="Flags SDK docs"
+  description="The Vercel Flags SDK integration used as the target workflow for this lab."
+/>
