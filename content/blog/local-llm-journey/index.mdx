@@ -1,0 +1,53 @@
+export const metadata = {
+  title: "Why local models keep pulling me in",
+  description:
+    "A reflection on local LLMs, unfinished thoughts, and the pull toward more private, cost-aware AI workflows.",
+  publishedAt: "2026-07-19",
+  status: "published",
+  tags: ["LLM", "local-ai", "privacy", "workflow"],
+  series: {
+    slug: "building-the-workshop",
+    title: "Building the workshop",
+    order: 2,
+  },
+};
+
+## The cloud-shaped default
+
+AI-assisted development gave me the spark to tinker more privately again.
+
+That sounds slightly backwards at first, because most AI-assisted development starts somewhere else. The useful tools are usually cloud tools. The model runs on someone else's machine, the prompt travels over the network, and the default setup is not private in the way a local notebook or local script is private. The tools are convenient, fast, and often better than anything I can run on my own machine. I do not want to pretend otherwise.
+
+But the more I use them, the more I notice a small friction point that does not go away: I do not always want to send the thing I am thinking about to a monthly service.
+
+Sometimes the data is not secret in a dramatic way. It is just unfinished. A rough idea, a private note, a work-in-progress prompt, a small part of a project that I do not want to hand over yet. I also want to collect those fragments so I can use them later, no matter which LLM provider I end up using. That makes local models attractive for a second reason: the notes and context can become mine first, instead of being shaped around one service from the start. The problem is not only whether a provider stores it or trains on it. The problem is that the work leaves my machine at all.
+
+That is the part that keeps making local models interesting to me.
+
+## The local pull
+
+I am not deep into self-hosting yet. This is still something I am feeling my way into. The appeal is simple though: if the model runs locally, the boundary is clearer. The prompt, the context, and the messy half-formed thought can stay where I am already working.
+
+There is a cost side to this too. Since I started using LLMs, I have been aware of how easily the bill can become invisible. A model feels cheap when you use it once. It feels different when it becomes part of how you write, code, search, summarize, and debug. I have tried to build workflows that do not treat every task as if it deserves the most expensive model available.
+
+That habit is not specific to local models. It applies to cloud models as well. Some tasks need strong reasoning. Some need speed. Some only need a cheap pass over text. I already think in those categories when I choose tools, even if the choice is still manual most of the time.
+
+Local models make that question sharper because the resources are more visible. There is only so much memory, disk space, and patience. A general model can be useful, but specialized models are part of what makes local use realistic. A smaller model that is good enough for one task may be better than a larger model that tries to do everything.
+
+## The model-choice problem
+
+That creates the next problem.
+
+If different tasks work better with different models, I do not want to be the router every time. I do not want to stop and think: is this prompt for coding, writing, summarizing, searching, planning, or something else? Which model is installed? Which one is already loaded? Which one is worth the wait?
+
+Tools that route between models already exist, and I am aware that this is not a new idea. What I am trying to understand is more personal and practical: what would a good version look like for my own workflow?
+
+## The question I keep coming back to
+
+The open question for me is not how to build the smartest possible routing system. It is smaller than that, and probably more useful: how far can I get with a simple, cost-aware way to decide which model should handle a prompt? Locally, that decision has another cost attached to it. If I can only keep one model running at a time, then changing the task may also mean unloading one model and loading another. The choice is not only about quality. It is also about waiting, memory, and whether the switch is worth it.
+
+Maybe the answer is a small classifier. Maybe it is a set of rules. Maybe it is another model that only decides where the prompt should go. I do not know yet. That is why this belongs in the workshop.
+
+For now, I mostly want to put the question in the room. Privacy, sovereignty, and cost are enough to make local models worth my attention, but the practical shape is still unclear.
+
+If the answer turns into something I can tinker with, it will probably become a lab entry. Until then, the question is enough to follow: how efficient can this get if the default assumption is not "send it away," but "give unfinished thoughts a local place to grow?"
