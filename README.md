@@ -5,7 +5,11 @@ Personal website, MDX blog, and experiment lab.
 ## Commands
 
 - `pnpm dev` starts the local Next.js app.
-- `pnpm build` creates a production build.
+- `pnpm build` creates the OpenNext Cloudflare production build.
+- `pnpm build:cloudflare` creates the OpenNext Cloudflare production build.
+- `pnpm build:next` creates a plain Next.js production build.
+- `pnpm deploy` builds and deploys the site to Cloudflare Workers.
+- `pnpm cloudflare:deploy` is an alias for Cloudflare Git builds.
 - `pnpm typecheck` runs TypeScript checks.
 - `pnpm lint` runs Oxlint.
 - `pnpm format` formats supported files with Oxfmt.
@@ -15,6 +19,6 @@ Personal website, MDX blog, and experiment lab.
 ## Docs
 
 - `docs/authoring.md` explains the MDX content workflow.
-- `docs/deployment.md` covers Vercel setup and environment variables.
+- `docs/deployment.md` covers Cloudflare deployment and environment variables.
 
 Code is MIT licensed. Content and personal assets are all rights reserved unless stated otherwise.

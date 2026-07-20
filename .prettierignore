@@ -6,4 +6,6 @@ coverage
 .vercel
 pnpm-lock.yaml
 public
+app/lib/content.generated.ts
+lib/content-metadata.generated.ts
 *.tsbuildinfo

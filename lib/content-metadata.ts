@@ -1,11 +1,12 @@
-import fs from "node:fs";
-import path from "node:path";
+import { contentReferences } from "./content-metadata.generated";
 
 export type ContentKind = "blog" | "lab";
 
 export type ContentMetadata = {
   title: string;
   description: string;
+  publishedAt: string;
+  updatedAt?: string;
   status: "draft" | "published";
   tags: string[];
   platform?: string;
@@ -24,8 +25,6 @@ export type ContentReference = {
   sourcePath: string;
   metadata: ContentMetadata;
 };
-
-const contentRoot = path.join(process.cwd(), "content");
 
 export function extractMetadata(source: string, file: string): ContentMetadata {
   const marker = "export const metadata =";
@@ -64,35 +63,18 @@ export function getContentSourcePath(type: ContentKind, slug: string) {
 }
 
 export function getContentReference(type: ContentKind, slug: string): ContentReference {
-  const sourcePath = getContentSourcePath(type, slug);
-  const filePath = path.join(process.cwd(), sourcePath);
+  const reference = contentReferences.find((item) => item.type === type && item.slug === slug);
 
-  if (!fs.existsSync(filePath)) {
-    throw new Error(`Missing content file: ${sourcePath}`);
+  if (!reference) {
+    throw new Error(`Missing content file: ${getContentSourcePath(type, slug)}`);
   }
 
-  const metadata = extractMetadata(fs.readFileSync(filePath, "utf8"), sourcePath);
-
-  return {
-    type,
-    slug,
-    href: `/${type}/${slug}`,
-    sourcePath,
-    metadata,
-  };
+  return reference;
 }
 
 export function listContentSlugs(type: ContentKind) {
-  const collectionRoot = path.join(contentRoot, type);
-
-  if (!fs.existsSync(collectionRoot)) {
-    return [];
-  }
-
-  return fs
-    .readdirSync(collectionRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .filter((entry) => fs.existsSync(path.join(collectionRoot, entry.name, "index.mdx")))
-    .map((entry) => entry.name)
+  return contentReferences
+    .filter((reference) => reference.type === type)
+    .map((reference) => reference.slug)
     .sort();
 }
