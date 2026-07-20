@@ -1,5 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
+import { blogContent, labContent } from "./content.generated";
 
 export type ContentStatus = "draft" | "published";
 export type LabStatus = "planned" | "active" | "archived";
@@ -46,29 +45,14 @@ type ContentModule<TMetadata> = {
   metadata: TMetadata;
 };
 
-const contentRoot = path.join(process.cwd(), "content");
+type ContentEntry<TMetadata> = {
+  slug: string;
+  source: string;
+  module: ContentModule<TMetadata>;
+};
 
 function isVisible(status: ContentStatus) {
   return status === "published" || process.env.NODE_ENV !== "production";
-}
-
-function getSlugs(collection: "blog" | "lab") {
-  const collectionRoot = path.join(contentRoot, collection);
-
-  if (!fs.existsSync(collectionRoot)) {
-    return [];
-  }
-
-  return fs
-    .readdirSync(collectionRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .filter((entry) => fs.existsSync(path.join(collectionRoot, entry.name, "index.mdx")))
-    .map((entry) => entry.name)
-    .sort();
-}
-
-function getMdxSource(collection: "blog" | "lab", slug: string) {
-  return fs.readFileSync(path.join(contentRoot, collection, slug, "index.mdx"), "utf8");
 }
 
 function getReadingTime(markdown: string) {
@@ -83,12 +67,22 @@ function getReadingTime(markdown: string) {
   return `${minutes} min read`;
 }
 
+function getEntry<TMetadata>(entries: readonly ContentEntry<TMetadata>[], slug: string) {
+  return entries.find((entry) => entry.slug === slug) ?? null;
+}
+
 function byPublishedDate<T extends { publishedAt: string }>(a: T, b: T) {
   return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
 }
 
 export async function getBlogPost(slug: string) {
-  const mod = (await import(`@/content/blog/${slug}/index.mdx`)) as ContentModule<BlogMetadata>;
+  const entry = getEntry(blogContent, slug);
+
+  if (!entry) {
+    return null;
+  }
+
+  const mod = entry.module;
 
   if (!isVisible(mod.metadata.status)) {
     return null;
@@ -98,13 +92,13 @@ export async function getBlogPost(slug: string) {
     ...mod.metadata,
     slug,
     href: `/blog/${slug}`,
-    readingTime: getReadingTime(getMdxSource("blog", slug)),
+    readingTime: getReadingTime(entry.source),
     Component: mod.default,
   };
 }
 
 export async function getPublishedBlogPosts() {
-  const posts = await Promise.all(getSlugs("blog").map((slug) => getBlogPost(slug)));
+  const posts = await Promise.all(blogContent.map((entry) => getBlogPost(entry.slug)));
 
   return posts
     .filter((post): post is NonNullable<typeof post> => Boolean(post))
@@ -113,7 +107,13 @@ export async function getPublishedBlogPosts() {
 }
 
 export async function getLabEntry(slug: string) {
-  const mod = (await import(`@/content/lab/${slug}/index.mdx`)) as ContentModule<LabMetadata>;
+  const entry = getEntry(labContent, slug);
+
+  if (!entry) {
+    return null;
+  }
+
+  const mod = entry.module;
 
   if (!isVisible(mod.metadata.status)) {
     return null;
@@ -128,7 +128,13 @@ export async function getLabEntry(slug: string) {
 }
 
 async function getLabPreview(slug: string): Promise<LabPreview> {
-  const mod = (await import(`@/content/lab/${slug}/index.mdx`)) as ContentModule<LabMetadata>;
+  const entry = getEntry(labContent, slug);
+
+  if (!entry) {
+    throw new Error(`Unknown lab entry: ${slug}`);
+  }
+
+  const mod = entry.module;
 
   return {
     ...mod.metadata,
@@ -137,7 +143,7 @@ async function getLabPreview(slug: string): Promise<LabPreview> {
 }
 
 export async function getPublishedLabEntries() {
-  const entries = await Promise.all(getSlugs("lab").map((slug) => getLabEntry(slug)));
+  const entries = await Promise.all(labContent.map((entry) => getLabEntry(entry.slug)));
 
   return entries
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry))
@@ -146,7 +152,7 @@ export async function getPublishedLabEntries() {
 }
 
 export async function getDraftLabEntries() {
-  const entries = await Promise.all(getSlugs("lab").map((slug) => getLabPreview(slug)));
+  const entries = await Promise.all(labContent.map((entry) => getLabPreview(entry.slug)));
 
   return entries
     .filter((entry) => entry.status === "draft")

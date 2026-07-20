@@ -23,18 +23,15 @@
 - [x] Review short pages to confirm the footer sits at the bottom of the viewport.
 - [x] Finalize the avatar treatment.
 
-## 4. Vercel Deployment
+## 4. Cloudflare Deployment
 
-- [ ] Link the repo to a Vercel project.
-- [ ] Enable Vercel Web Analytics.
-- [ ] Enable Vercel Speed Insights.
-- [ ] Add production environment variables in Vercel.
-- [ ] Deploy and review a Vercel preview URL.
+- [x] Add OpenNext Cloudflare and Wrangler configuration.
+- [ ] Add production environment variables in Cloudflare.
+- [ ] Deploy and review a Cloudflare Workers preview URL.
 
 ## 5. Lab Features
 
-- [ ] Configure Vercel Flags when ready to test real flag evaluation.
-- [ ] Confirm the Flags Explorer discovery endpoint works.
+- [ ] Decide whether the flags lab needs a Cloudflare-backed flag provider.
 - [ ] Shape the sharing/discovery lab around previews, SEO, feeds, Markdown, and AI-readable content.
 
 ## 6. Quality Gates
