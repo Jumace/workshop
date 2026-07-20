@@ -5,8 +5,6 @@ import { getBlogPost, getBlogSlugs } from "@/app/lib/content";
 import { absoluteUrl } from "@/app/lib/site";
 import styles from "./page.module.css";
 
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   const slugs = await getBlogSlugs();
 
