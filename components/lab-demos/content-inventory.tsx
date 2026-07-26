@@ -8,9 +8,9 @@ function getEntries(kind: ContentKind): InventoryItem[] {
       const { metadata } = reference;
       const isPublished = metadata.status === "published";
       const appearsIn = [
-        isPublished ? (kind === "blog" ? "Blog index" : "Lab index") : null,
-        kind === "lab" && !isPublished ? "Coming next" : null,
-        kind === "blog" && isPublished ? "RSS" : null,
+        isPublished ? (kind === "notebook" ? "Notebook index" : "Lab index") : null,
+        kind === "lab" && !isPublished ? "Draft inventory" : null,
+        kind === "notebook" && isPublished ? "RSS" : null,
         isPublished ? "Sitemap" : null,
       ].filter((item): item is string => Boolean(item));
 
@@ -28,7 +28,7 @@ function getEntries(kind: ContentKind): InventoryItem[] {
 }
 
 export function ContentInventory() {
-  const items = [...getEntries("blog"), ...getEntries("lab")];
+  const items = [...getEntries("notebook"), ...getEntries("lab")];
 
   return <ContentInventoryView items={items} />;
 }

@@ -33,7 +33,7 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", gap: 18, color: "#37d5ff", fontSize: 28 }}>
-          <span>Blog</span>
+          <span>Notebook</span>
           <span>Lab</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

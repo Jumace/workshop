@@ -12,7 +12,7 @@ Personal website, MDX blog, and experiment lab.
 - `pnpm lint` runs Oxlint.
 - `pnpm format` formats supported files with Oxfmt.
 - `pnpm validate:content` checks MDX metadata.
-- `pnpm check:spelling` spell-checks Markdown and MDX content.
+- `pnpm spelling:check` spell-checks Markdown and MDX content.
 
 ## Docs
 

@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { LabStateLabel, MetadataRow, TagList } from "@/app/components/content-meta";
+import { PageIntro } from "@/app/components/page-intro";
+import { RelatedContent } from "@/app/components/related-content";
 import { getLabEntry, getLabSlugs } from "@/app/lib/content";
 import { absoluteUrl } from "@/app/lib/site";
-import styles from "./page.module.css";
+import { getContentReferencesByIds } from "@/lib/content-metadata";
 
 export async function generateStaticParams() {
   const slugs = await getLabSlugs();
@@ -46,23 +49,28 @@ export default async function LabEntryPage({ params }: { params: Promise<{ slug:
   }
 
   const { Component } = entry;
+  const relatedItems = getContentReferencesByIds([...entry.related.notebook, ...entry.related.lab]);
 
   return (
     <article className="pageShell">
-      <header className={styles.header}>
-        <p className="eyebrow">Lab / {entry.platform}</p>
-        <h1>{entry.title}</h1>
-        <p>{entry.description}</p>
-        <div className={styles.meta}>
-          <span>{entry.labStatus}</span>
-          {entry.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
-      </header>
+      <PageIntro
+        eyebrow="LAB"
+        title={entry.title}
+        description={entry.description}
+        meta={
+          <>
+            <div>
+              <LabStateLabel state={entry.project.stage} />
+            </div>
+            <MetadataRow publishedAt={entry.publishedAt} updatedAt={entry.updatedAt} />
+            <TagList tags={entry.tags} />
+          </>
+        }
+      />
       <div className="prose">
         <Component />
       </div>
+      <RelatedContent items={relatedItems} />
     </article>
   );
 }

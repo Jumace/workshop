@@ -1,40 +1,45 @@
 .inventory {
   display: grid;
-  gap: 1rem;
+  overflow: hidden;
+  gap: 0;
+  border: 1px solid rgba(222, 214, 196, 0.24);
+  border-radius: 0.35rem;
+  background: rgba(11, 13, 10, 0.16);
 }
 
 .controls {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  border-bottom: 1px solid rgba(222, 214, 196, 0.18);
+  padding: 0.85rem;
 }
 
 .controls button {
   cursor: pointer;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 0.25rem;
   padding: 0.42rem 0.72rem;
   color: var(--muted);
   background: rgba(255, 255, 255, 0.035);
 }
 
 .controls button[data-active="true"] {
-  border-color: rgba(55, 213, 255, 0.62);
+  border-color: rgba(146, 199, 163, 0.62);
   color: var(--cyan);
-  background: rgba(55, 213, 255, 0.1);
+  background: rgba(146, 199, 163, 0.08);
 }
 
 .list {
   display: grid;
-  gap: 0.75rem;
 }
 
-.card {
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  padding: 1rem;
-  background:
-    linear-gradient(135deg, rgba(55, 213, 255, 0.07), transparent 38%), rgba(255, 255, 255, 0.032);
+.row {
+  padding: 1rem 0.85rem;
+}
+
+.row + .row {
+  border-top: 1px solid rgba(222, 214, 196, 0.16);
 }
 
 .meta {
@@ -44,45 +49,57 @@
 }
 
 .meta span {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 0.18rem 0.48rem;
   color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.meta span + span::before {
+  margin-right: 0.4rem;
+  color: rgba(222, 214, 196, 0.35);
+  content: "·";
 }
 
 .meta span:first-child {
   color: var(--cyan);
 }
 
-.card h3 {
+.row h3 {
   margin: 0.75rem 0 0 !important;
   font-size: 1.1rem !important;
 }
 
-.card dl {
+.row dl {
   display: grid;
-  gap: 0.55rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
   margin: 0.85rem 0 0;
 }
 
-.card dl div {
+.row dl div {
   display: grid;
   gap: 0.15rem;
   border-top: 1px solid var(--border);
   padding-top: 0.55rem;
 }
 
-.card dt {
+.row dt {
   color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
 }
 
-.card dd {
+.row dd {
   margin: 0;
   color: var(--text);
   font-size: 0.9rem;
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .row dl {
+    grid-template-columns: 1fr;
+  }
 }

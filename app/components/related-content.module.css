@@ -1,0 +1,81 @@
+.related {
+  max-width: var(--content-width);
+  margin-top: clamp(2rem, 5vw, 3rem);
+  border-top: 1px solid rgba(222, 214, 196, 0.22);
+  padding-top: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.15rem 0 0.15rem clamp(1rem, 2vw, 1.35rem);
+  text-decoration: none;
+}
+
+.card::before {
+  position: absolute;
+  top: 0.2rem;
+  bottom: 0.25rem;
+  left: 0;
+  width: 2px;
+  content: "";
+  background: var(--cyan);
+  opacity: 0.72;
+}
+
+.eyebrow {
+  color: var(--cyan);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.titleLine {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.card h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.card p {
+  max-width: 42rem;
+  margin: 0;
+  color: rgba(222, 214, 196, 0.76);
+}
+
+.arrow {
+  color: var(--cyan);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1.25rem;
+  transition: transform var(--duration-default) var(--ease-standard);
+}
+
+.card:hover h2 {
+  color: var(--cyan);
+}
+
+.card:focus-visible {
+  border-radius: 0.35rem;
+  outline: 2px solid var(--cyan);
+  outline-offset: 0.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card:hover .arrow {
+    transform: translateX(0.2rem);
+  }
+}
