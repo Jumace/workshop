@@ -1,8 +1,8 @@
-import { getPublishedBlogPosts } from "@/app/lib/content";
+import { getPublishedNotebookEntries } from "@/app/lib/content";
 import { absoluteUrl, siteConfig } from "@/app/lib/site";
 
 export async function GET() {
-  const posts = await getPublishedBlogPosts();
+  const posts = await getPublishedNotebookEntries();
   const items = posts
     .map(
       (post) => `<item>

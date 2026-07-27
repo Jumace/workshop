@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 import { SiteFooter } from "@/app/components/site-footer";
@@ -14,6 +15,20 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-editorial",
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+});
+
+const handwritten = localFont({
+  src: "./fonts/nanum-pen-script-latin.woff2",
+  variable: "--font-handwritten",
+  weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -47,7 +62,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} ${handwritten.variable}`}
+    >
       <body>
         <SiteHeader />
         <main>{children}</main>

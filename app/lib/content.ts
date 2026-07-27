@@ -1,31 +1,20 @@
-import { blogContent, labContent } from "./content.generated";
+import { labContent, notebookContent } from "./content.generated";
+import {
+  labMetadataSchema,
+  notebookMetadataSchema,
+  type ContentMetadata,
+  type LabMetadata,
+  type NotebookMetadata,
+} from "@/lib/content-schemas";
+import { z } from "zod";
 
-export type ContentStatus = "draft" | "published";
-export type LabStatus = "planned" | "active" | "archived";
-export type LabPlatform = "general" | "vercel" | "nextjs" | "ai";
+export type ContentStatus = ContentMetadata["status"];
+export type ProjectStage = LabMetadata["project"]["stage"];
 
-export type ContentSeries = {
-  slug: string;
-  title: string;
-  order: number;
-};
+export type NotebookEntryMetadata = NotebookMetadata;
+export type { ContentMetadata, LabMetadata, NotebookMetadata };
 
-export type BlogMetadata = {
-  title: string;
-  description: string;
-  publishedAt: string;
-  updatedAt?: string;
-  status: ContentStatus;
-  tags: string[];
-  series?: ContentSeries;
-};
-
-export type LabMetadata = BlogMetadata & {
-  platform: LabPlatform;
-  labStatus: LabStatus;
-};
-
-export type BlogPost = BlogMetadata & {
+export type NotebookEntry = NotebookMetadata & {
   slug: string;
   href: string;
   readingTime: string;
@@ -47,6 +36,7 @@ type ContentModule<TMetadata> = {
 
 type ContentEntry<TMetadata> = {
   slug: string;
+  sourcePath: string;
   source: string;
   module: ContentModule<TMetadata>;
 };
@@ -71,34 +61,55 @@ function getEntry<TMetadata>(entries: readonly ContentEntry<TMetadata>[], slug: 
   return entries.find((entry) => entry.slug === slug) ?? null;
 }
 
+function formatValidationIssues(error: z.ZodError) {
+  return error.issues
+    .map((issue) => `metadata.${issue.path.join(".") || "root"}: ${issue.message}`)
+    .join("\n");
+}
+
+function parseEntryMetadata<TMetadata>(
+  schema: z.ZodType<TMetadata>,
+  rawMetadata: unknown,
+  sourcePath: string,
+) {
+  const parsed = schema.safeParse(rawMetadata);
+
+  if (!parsed.success) {
+    throw new Error(`Invalid metadata in ${sourcePath}:\n${formatValidationIssues(parsed.error)}`);
+  }
+
+  return parsed.data;
+}
+
 function byPublishedDate<T extends { publishedAt: string }>(a: T, b: T) {
   return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
 }
 
-export async function getBlogPost(slug: string) {
-  const entry = getEntry(blogContent, slug);
+export async function getNotebookEntry(slug: string) {
+  const entry = getEntry(notebookContent, slug);
 
   if (!entry) {
     return null;
   }
 
   const mod = entry.module;
+  const metadata = parseEntryMetadata(notebookMetadataSchema, mod.metadata, entry.sourcePath);
 
-  if (!isVisible(mod.metadata.status)) {
+  if (!isVisible(metadata.status)) {
     return null;
   }
 
   return {
-    ...mod.metadata,
+    ...metadata,
     slug,
-    href: `/blog/${slug}`,
+    href: `/notebook/${slug}`,
     readingTime: getReadingTime(entry.source),
     Component: mod.default,
   };
 }
 
-export async function getPublishedBlogPosts() {
-  const posts = await Promise.all(blogContent.map((entry) => getBlogPost(entry.slug)));
+export async function getPublishedNotebookEntries() {
+  const posts = await Promise.all(notebookContent.map((entry) => getNotebookEntry(entry.slug)));
 
   return posts
     .filter((post): post is NonNullable<typeof post> => Boolean(post))
@@ -114,13 +125,14 @@ export async function getLabEntry(slug: string) {
   }
 
   const mod = entry.module;
+  const metadata = parseEntryMetadata(labMetadataSchema, mod.metadata, entry.sourcePath);
 
-  if (!isVisible(mod.metadata.status)) {
+  if (!isVisible(metadata.status)) {
     return null;
   }
 
   return {
-    ...mod.metadata,
+    ...metadata,
     slug,
     href: `/lab/${slug}`,
     Component: mod.default,
@@ -135,9 +147,10 @@ async function getLabPreview(slug: string): Promise<LabPreview> {
   }
 
   const mod = entry.module;
+  const metadata = parseEntryMetadata(labMetadataSchema, mod.metadata, entry.sourcePath);
 
   return {
-    ...mod.metadata,
+    ...metadata,
     slug,
   };
 }
@@ -159,8 +172,8 @@ export async function getDraftLabEntries() {
     .sort((a, b) => a.title.localeCompare(b.title));
 }
 
-export async function getBlogSlugs() {
-  const posts = await getPublishedBlogPosts();
+export async function getNotebookSlugs() {
+  const posts = await getPublishedNotebookEntries();
 
   return posts.map((post) => post.slug);
 }

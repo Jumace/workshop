@@ -1,26 +1,28 @@
 .callout {
-  margin: 1.5rem 0;
-  border: 1px solid var(--border);
-  border-left-color: var(--cyan);
-  border-radius: 1rem;
-  padding: 1rem;
-  background: rgba(55, 213, 255, 0.07);
+  position: relative;
+  margin: 1.75rem 0;
+  padding: 0.1rem 0 0.1rem 1rem;
 }
 
-.callout[data-tone="warning"] {
-  border-left-color: var(--danger);
-  background: rgba(251, 113, 133, 0.08);
-}
-
-.callout[data-tone="success"] {
-  border-left-color: var(--green);
-  background: rgba(74, 222, 128, 0.08);
+.callout::before {
+  position: absolute;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  left: 0;
+  width: 2px;
+  content: "";
+  background: var(--cyan);
+  opacity: 0.72;
 }
 
 .calloutTitle {
   margin: 0 0 0.35rem !important;
-  color: var(--text);
+  color: var(--cyan);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .linkCard {
@@ -28,32 +30,26 @@
   display: grid;
   gap: 0.45rem;
   margin: 1.75rem 0;
-  border: 1px solid rgba(55, 213, 255, 0.34);
-  border-radius: 1rem;
-  padding: 1.1rem 1.2rem;
-  background:
-    linear-gradient(135deg, rgba(55, 213, 255, 0.12), transparent 38%),
-    linear-gradient(215deg, rgba(155, 124, 255, 0.12), transparent 42%), rgba(255, 255, 255, 0.045);
+  border-top: 1px solid rgba(222, 214, 196, 0.22);
+  padding: 1.1rem 0 0.1rem 1rem;
   text-decoration: none !important;
-  transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease;
 }
 
-.linkCard::after {
-  color: var(--cyan);
-  content: "Open →";
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.78rem;
+.linkCard::before {
+  position: absolute;
+  top: 1.2rem;
+  bottom: 0.2rem;
+  left: 0;
+  width: 2px;
+  content: "";
+  background: var(--cyan);
+  opacity: 0.72;
 }
 
-.linkCard:hover {
-  transform: translateY(-1px);
-  border-color: var(--cyan);
-  background:
-    linear-gradient(135deg, rgba(55, 213, 255, 0.16), transparent 38%),
-    linear-gradient(215deg, rgba(155, 124, 255, 0.15), transparent 42%), rgba(255, 255, 255, 0.06);
+.linkCard:focus-visible {
+  border-radius: 0.35rem;
+  outline: 2px solid var(--cyan);
+  outline-offset: 0.5rem;
 }
 
 .linkCardLabel {
@@ -65,21 +61,46 @@
   text-transform: uppercase;
 }
 
-.linkCard span:not(.linkCardLabel) {
+.linkCardTitle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
   color: var(--text);
-  font-weight: 700;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(1.28rem, 3vw, 1.72rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.linkCardArrow {
+  color: var(--cyan);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1.1rem;
+  transition: transform var(--duration-default) var(--ease-standard);
 }
 
 .linkCard small {
-  color: var(--muted);
+  color: rgba(222, 214, 196, 0.72);
+}
+
+.linkCard:hover .linkCardTitle {
+  color: var(--cyan);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .linkCard:hover .linkCardArrow {
+    transform: translateX(0.2rem);
+  }
 }
 
 .demoFrame {
   overflow: hidden;
   margin: 1.5rem 0;
-  border: 1px solid var(--border);
-  border-radius: 1.15rem;
-  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(222, 214, 196, 0.26);
+  border-radius: 0.35rem;
+  background: rgba(11, 13, 10, 0.16);
 }
 
 .demoHeader {

@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
 
-import { getPublishedBlogPosts, getPublishedLabEntries } from "@/app/lib/content";
+import { getPublishedLabEntries, getPublishedNotebookEntries } from "@/app/lib/content";
 import { absoluteUrl } from "@/app/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, labs] = await Promise.all([getPublishedBlogPosts(), getPublishedLabEntries()]);
-  const staticRoutes = ["/", "/blog", "/lab", "/about", "/privacy"];
+  const [posts, labs] = await Promise.all([
+    getPublishedNotebookEntries(),
+    getPublishedLabEntries(),
+  ]);
+  const staticRoutes = ["/", "/notebook", "/lab", "/about", "/privacy"];
 
   return [
     ...staticRoutes.map((route) => ({ url: absoluteUrl(route) })),

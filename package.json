@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "opennextjs-cloudflare build",
-    "build:next": "node scripts/generate-content-registry.mjs && next build",
+    "build:next": "tsx scripts/generate-content-registry.ts && next build",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "deploy": "pnpm build && opennextjs-cloudflare deploy",
     "dev": "next dev --turbopack",
@@ -12,10 +12,11 @@
     "lint": "oxlint",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "next start",
-    "typecheck": "node scripts/generate-content-registry.mjs && tsc --noEmit -p tsconfig.typecheck.json",
+    "typecheck": "tsx scripts/generate-content-registry.ts && tsc --noEmit -p tsconfig.typecheck.json",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "validate:content": "node scripts/validate-content.mjs",
-    "check:spelling": "cspell --no-progress"
+    "validate:content": "tsx scripts/validate-content.ts",
+    "spelling:check": "cspell --no-progress",
+    "spelling:fix": "node cspell-add-words.js"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -27,8 +28,11 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.14.4",
-    "typescript": "5.7.3"
+    "rehype-slug": "^6.0.0",
+    "typescript": "5.7.3",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.20.1",
@@ -39,6 +43,7 @@
     "lefthook": "^2.1.10",
     "oxfmt": "^0.59.0",
     "oxlint": "^1.74.0",
+    "tsx": "^4.23.1",
     "wrangler": "^4.112.0"
   },
   "packageManager": "pnpm@11.3.0"

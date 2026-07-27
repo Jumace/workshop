@@ -5,24 +5,31 @@ import { useState } from "react";
 import styles from "./content-inventory.module.css";
 
 export type InventoryItem = {
-  type: "blog" | "lab";
+  type: "notebook" | "lab";
   title: string;
-  status: "draft" | "published";
+  status: "draft" | "review" | "published" | "archived";
   sourcePath: string;
   route: string;
   appearsIn: string[];
   series?: string;
 };
 
-type Filter = "all" | "published" | "draft" | "blog" | "lab";
+type Filter = "all" | InventoryItem["status"] | "notebook" | "lab";
 
 const filters: { label: string; value: Filter }[] = [
   { label: "All", value: "all" },
   { label: "Published", value: "published" },
   { label: "Draft", value: "draft" },
-  { label: "Blog", value: "blog" },
+  { label: "Review", value: "review" },
+  { label: "Archived", value: "archived" },
+  { label: "Notebook", value: "notebook" },
   { label: "Lab", value: "lab" },
 ];
+
+const typeLabels: Record<InventoryItem["type"], string> = {
+  notebook: "Notebook",
+  lab: "Lab",
+};
 
 export function ContentInventoryView({ items }: { items: InventoryItem[] }) {
   const [filter, setFilter] = useState<Filter>("all");
@@ -31,7 +38,7 @@ export function ContentInventoryView({ items }: { items: InventoryItem[] }) {
       return true;
     }
 
-    if (filter === "blog" || filter === "lab") {
+    if (filter === "notebook" || filter === "lab") {
       return item.type === filter;
     }
 
@@ -55,9 +62,9 @@ export function ContentInventoryView({ items }: { items: InventoryItem[] }) {
 
       <div className={styles.list}>
         {filteredItems.map((item) => (
-          <article key={`${item.type}-${item.sourcePath}`} className={styles.card}>
+          <article key={`${item.type}-${item.sourcePath}`} className={styles.row}>
             <div className={styles.meta}>
-              <span>{item.type}</span>
+              <span>{typeLabels[item.type]}</span>
               <span>{item.status}</span>
               {item.series ? <span>{item.series}</span> : null}
             </div>

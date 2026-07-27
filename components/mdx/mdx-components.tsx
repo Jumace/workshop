@@ -36,7 +36,12 @@ export function LinkCard({
   const content = (
     <>
       <span className={styles.linkCardLabel}>{label}</span>
-      <span>{title}</span>
+      <span className={styles.linkCardTitle}>
+        {title}
+        <span className={styles.linkCardArrow} aria-hidden="true">
+          →
+        </span>
+      </span>
       <small>{description}</small>
     </>
   );

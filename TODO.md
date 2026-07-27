@@ -42,7 +42,7 @@
 - [x] Run `pnpm lint`.
 - [x] Run `pnpm typecheck`.
 - [x] Run `pnpm validate:content`.
-- [x] Run `pnpm check:spelling`.
+- [x] Run `pnpm spelling:check`.
 - [x] Run `pnpm build`.
 
 ## 7. Launch

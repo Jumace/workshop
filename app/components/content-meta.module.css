@@ -1,0 +1,45 @@
+.row,
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.85rem;
+  align-items: center;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.row {
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.status,
+.labState {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.8rem;
+  border: 1px solid rgba(146, 199, 163, 0.45);
+  border-radius: 999px;
+  padding: 0.22rem 0.6rem;
+  color: var(--cyan);
+  background: rgba(146, 199, 163, 0.07);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.labState {
+  border-color: rgba(222, 214, 196, 0.28);
+  color: var(--text);
+  background: rgba(222, 214, 196, 0.06);
+}
+
+.tags {
+  margin-top: 0.75rem;
+}
+
+.tags span {
+  border-bottom: 1px solid rgba(146, 199, 163, 0.32);
+  color: rgba(222, 214, 196, 0.7);
+  font-size: 0.76rem;
+  line-height: 1.7;
+}

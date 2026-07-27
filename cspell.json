@@ -5,15 +5,18 @@
   "ignorePaths": ["node_modules", ".next", "pnpm-lock.yaml"],
   "words": [
     "Cebulla",
-    "deven",
     "Jumace",
-    "lefthook",
     "MDX",
     "Oxfmt",
     "Oxlint",
-    "repo",
     "Shiki",
     "Vercel",
-    "opennextjs"
+    "deven",
+    "glassmorphism",
+    "lefthook",
+    "letterforms",
+    "opennextjs",
+    "repo",
+    "résumé"
   ]
 }
