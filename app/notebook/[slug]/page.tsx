@@ -39,6 +39,20 @@ export async function generateMetadata({
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       url: absoluteUrl(post.href),
+      images: [
+        {
+          url: absoluteUrl(`${post.href}/opengraph-image`),
+          width: 1200,
+          height: 630,
+          alt: `${post.title} — cebulla.dev Notebook`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [absoluteUrl(`${post.href}/opengraph-image`)],
     },
   };
 }

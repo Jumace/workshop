@@ -6,7 +6,7 @@ import AboutContent from "@/content/about/index.mdx";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "A personal note from Julian Cebulla about this site and Lab.",
+  description: "A personal note from Julian Cebulla about this site.",
   alternates: {
     canonical: "/about",
   },

@@ -5,7 +5,7 @@ import "./globals.css";
 
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
-import { siteConfig } from "@/app/lib/site";
+import { absoluteUrl, siteConfig } from "@/app/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,11 +46,20 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
+    images: [
+      {
+        url: absoluteUrl("/opengraph-image"),
+        width: 1200,
+        height: 630,
+        alt: "cebulla.dev — Following the spark.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
+    images: [absoluteUrl("/opengraph-image")],
   },
   alternates: {
     canonical: "/",

@@ -7,7 +7,7 @@ function getSiteUrl() {
 }
 
 export const siteConfig = {
-  name: "Julian Cebulla",
+  name: "cebulla.dev — Following the spark.",
   handle: "@Jumace",
   description: "Personal writing, technical notes, and experiments by Julian Cebulla.",
   url: getSiteUrl(),
