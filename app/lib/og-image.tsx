@@ -1,4 +1,3 @@
-import { readFileSync } from "node:fs";
 import { ImageResponse } from "next/og";
 
 export const ogImageSize = {
@@ -12,8 +11,6 @@ type OgImageOptions = {
   eyebrow?: string;
   siteName?: string;
 };
-
-const serifFontData = readFileSync(`${process.cwd()}/app/fonts/noto-serif-regular.ttf`);
 
 function splitTitle(title: string) {
   const maxCharsPerLine = title.length > 72 ? 24 : title.length > 48 ? 28 : 34;
@@ -200,16 +197,6 @@ export function createOgImage({
         </div>
       </div>
     </div>,
-    {
-      ...ogImageSize,
-      fonts: [
-        {
-          name: "Noto Serif",
-          data: serifFontData,
-          weight: 400,
-          style: "normal",
-        },
-      ],
-    },
+    ogImageSize,
   );
 }
