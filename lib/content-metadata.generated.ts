@@ -12,6 +12,13 @@ export const contentReferences = [
   },
   {
     type: "notebook",
+    slug: "the-notes-i-never-take",
+    href: "/notebook/the-notes-i-never-take",
+    sourcePath: "content/notebook/the-notes-i-never-take/index.mdx",
+    metadata: {"id":"the-notes-i-never-take","type":"notebook","title":"The notes I never take","description":"Lowering the friction between initial thoughts and useful notes.","publishedAt":"2026-07-29","updatedAt":"2026-07-29","status":"published","tags":["local-ai","notes","workflow","curiosity"],"series":{"slug":"building-the-workshop","title":"Building the workshop","order":4},"related":{"notebook":[],"lab":[]},"featured":false},
+  },
+  {
+    type: "notebook",
     slug: "welcome",
     href: "/notebook/welcome",
     sourcePath: "content/notebook/welcome/index.mdx",

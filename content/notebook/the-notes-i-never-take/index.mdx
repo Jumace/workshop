@@ -1,0 +1,92 @@
+export const metadata = {
+  id: "the-notes-i-never-take",
+  type: "notebook",
+  title: "The notes I never take",
+  description: "Lowering the friction between initial thoughts and useful notes.",
+  publishedAt: "2026-07-29",
+  updatedAt: "2026-07-29",
+  status: "published",
+  tags: ["local-ai", "notes", "workflow", "curiosity"],
+  series: {
+    slug: "building-the-workshop",
+    title: "Building the workshop",
+    order: 4,
+  },
+  related: {
+    notebook: [],
+    lab: [],
+  },
+  featured: false,
+};
+
+## The moment before the note
+
+Most of my ideas disappear before they become anything.
+
+The reason is usually boring: writing it down takes just enough effort that I do not do it. I notice the spark, think I should capture it, and then I start thinking about the work around the note. Open the right place. Explain the thought clearly enough. Give it a title. Clean it up just enough so I can understand it later.
+
+By then, the moment has already become heavier than the idea.
+
+The Workbench is supposed to be built around curiosity, so this is not a small problem for me. I want the site to hold more than finished things. The lab can show experiments and rough edges. The notebook can keep the slower part: why I started, what I was trying to understand, and what changed while I followed the question.
+
+But for that to work, the first capture step has to be almost frictionless.
+
+## Messy capture is not enough
+
+One answer would be to lower my standards and write messier notes.
+
+In theory, I could just throw every idea into a file, an app, or a scratchpad and sort it out later. That would at least preserve the thought. It would be better than losing it completely.
+
+In practice, that kind of capture often has the same result. A note can be too messy to use, too disconnected to find, or too vague to understand later. It still exists somewhere, but it has no clear path back into the work.
+
+That is the friction I keep noticing. A dumping ground is easy to create. The harder thing is a place where unfinished thoughts land in a form I can actually work with.
+
+I do not want polished writing at the moment of capture. I want enough structure that future me has a chance.
+
+## Why voice keeps coming back
+
+Voice feels like the right first step because it is faster than typing out a proper note.
+
+When an idea is still forming, speaking is easier than writing. I can circle around the thought, repeat myself, correct myself, and leave gaps without stopping the flow. That fits the way curiosity usually starts for me. I do not know where the spark will lead me yet. Often I do not even know what the actual point is.
+
+Raw voice recordings do not solve much on their own. They are easy to create and easy to ignore. A folder full of audio files can become just as useless as a folder full of messy notes.
+
+Even structured notes can get lost later. I want to solve that too, eventually. For now, I am looking at the first step: lowering the friction enough that the thought gets captured before it disappears.
+
+Transcription helps, but only halfway. A transcript turns the recording into text, which makes it searchable and easier to scan. Spoken text is usually not the kind of text I want to find later, though. It has filler words, repeated starts, unfinished sentences, and ideas arriving in the wrong order. The transcript preserves the moment. It does not automatically preserve what made the moment useful.
+
+## Two passes instead of one
+
+The version I want to build needs two passes.
+
+The first pass would turn audio into text. There are already models that are specialized for that, and this part of the problem feels specific enough that it should not be handled by a general chat model pretending to do everything.
+
+The second pass would take the transcript and turn it into something more coherent. I do not mean finished prose. I also do not want the model to rewrite so much that the original thought disappears. I want a structured note: filler removed, repetitions folded together, fragments grouped in a sensible order, and the actual idea easier to pick up again.
+
+I know this is not a completely new concept. [Ghost Pepper](https://matthartman.github.io/ghost-pepper/) is close to the shape I have in mind: record something, transcribe it, then use another model to make sense of the result. It is tied to macOS, though, and I do not want this workflow to depend on always being on one platform.
+
+Getting there is part of the fun. Building this is also a reason to learn: which models are good enough, where the integration gets awkward, and what kind of software makes this feel like a real part of my workflow instead of another tool I have to remember to use.
+
+## Keeping the first thought local
+
+Local AI is part of the appeal here for the same reason it keeps pulling me in elsewhere.
+
+<ContentLinkCard type="notebook" slug="local-llm-journey" label="Related notebook entry" />
+
+These early thoughts are not always private in a dramatic way. They are not necessarily secrets. They are unfinished, and unfinished thoughts feel different from finished text. I do not always want the first rough version of an idea to leave my machine before I have even decided whether it matters.
+
+Running the transcription and cleanup locally would make the boundary clearer. The audio, the transcript, and the structured note could stay close to where the idea happened. That does not solve everything, but it changes the default. The thought does not have to be sent away before it has a place to grow.
+
+Cost matters too. If this becomes a habit, I do not want every small spoken thought to turn into another cloud-model call by default. Local processing makes the cost easier to understand and contain. Time may matter less than it does in an interactive chat, because the processing does not have to happen while I stare at the screen. If I can trigger it and let it run in the background, slower local models are easier to accept.
+
+## The first layer of the system
+
+I have wanted the Workbench to become a system for lowering the friction around curiosity from the start. The site is already split between notebook and lab because I want to keep both sides of learning: the thinking and the making. A voice-to-note workflow is only the first layer.
+
+A structured note is useful on its own, but it can still disappear into the background. It can sit in the wrong folder, stay disconnected from related ideas, or become another thing I technically saved but never return to. Eventually I want these notes to feed into a local second brain: a system that can add a note to an existing topic when it belongs there, or create a new one when it does not.
+
+I could try to solve that brain layer first. It would probably help me sort the ideas I already have and make it easier to start working on them. But my motivation right now is with the transcription tool. That is where the spark is, and I want to follow it while it is still bright. A lost idea feels worse than spending longer structuring ideas that already exist somewhere.
+
+That is why I want to start here. I do not need another note-taking app, and transcription itself is not new. I want a better path between the moment curiosity appears and the point where it can become part of the work.
+
+I am looking forward to seeing where that path leads.
