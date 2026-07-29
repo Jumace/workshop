@@ -1,0 +1,151 @@
+.flow {
+  position: relative;
+  display: grid;
+  align-items: stretch;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+  padding-top: 2.15rem;
+}
+
+.flow::before {
+  position: absolute;
+  top: 0.85rem;
+  right: calc(16.666% - 0.6rem);
+  left: calc(16.666% - 0.6rem);
+  height: 2px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    rgba(146, 199, 163, 0.18),
+    var(--cyan),
+    rgba(146, 199, 163, 0.18)
+  );
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.75rem;
+}
+
+.node {
+  position: absolute;
+  top: -1.68rem;
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid rgba(146, 199, 163, 0.7);
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgb(11, 13, 10);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transform: translateX(-50%);
+}
+
+.card {
+  display: grid;
+  gap: 0.65rem;
+  height: 100%;
+  min-height: 11.5rem;
+  border: 1px solid rgba(222, 214, 196, 0.2);
+  border-radius: 0.4rem;
+  padding: 1rem;
+  background:
+    linear-gradient(135deg, rgba(146, 199, 163, 0.09), transparent 42%), rgba(255, 255, 255, 0.035);
+}
+
+.label {
+  color: var(--cyan);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--text);
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.card p {
+  margin: 0;
+  color: rgba(222, 214, 196, 0.76);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.artifact {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  min-height: 3.2rem;
+  border-left: 2px solid rgba(146, 199, 163, 0.52);
+  padding-left: 0.7rem;
+}
+
+.artifact span {
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.artifact code {
+  width: fit-content;
+  border: 1px solid rgba(146, 199, 163, 0.24);
+  border-radius: 999px;
+  padding: 0.28rem 0.52rem;
+  color: var(--cyan);
+  background: rgba(146, 199, 163, 0.08);
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .flow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-top: 0;
+    padding-left: 1.15rem;
+  }
+
+  .flow::before {
+    top: 1rem;
+    right: auto;
+    bottom: 1rem;
+    left: 0.2rem;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(
+      180deg,
+      rgba(146, 199, 163, 0.18),
+      var(--cyan),
+      rgba(146, 199, 163, 0.18)
+    );
+  }
+
+  .node {
+    top: 0.7rem;
+    left: -1.15rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.7rem;
+  }
+
+  .card {
+    height: auto;
+    min-height: auto;
+  }
+}
