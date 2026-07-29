@@ -6,7 +6,7 @@ pre-commit:
       run: pnpm exec oxfmt --write {staged_files} && git add {staged_files}
     spelling:
       glob: "*.{md,mdx}"
-      run: pnpm exec cspell --no-progress {staged_files}
+      run: pnpm spelling:check
     content:
       run: pnpm validate:content
     lint:
