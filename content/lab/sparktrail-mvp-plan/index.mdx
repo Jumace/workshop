@@ -1,0 +1,106 @@
+import { SparkTrailFlow } from "@/components/lab-demos/sparktrail-flow";
+
+export const metadata = {
+  id: "sparktrail-mvp-plan",
+  type: "lab",
+  title: "Planning the voice-to-note MVP",
+  description:
+    "The first planning boundaries for a local-first tool that turns messy spoken thoughts into usable notes.",
+  publishedAt: "2026-07-29",
+  updatedAt: "2026-07-29",
+  status: "published",
+  tags: ["local-ai", "notes", "voice", "workflow"],
+  series: {
+    slug: "building-the-workshop",
+    title: "Building the workshop",
+    order: 5,
+  },
+  related: {
+    notebook: ["the-notes-i-never-take"],
+    lab: [],
+  },
+  featured: false,
+  project: {
+    stage: "exploring",
+    startedAt: "2026-07-29",
+    lastActivityAt: "2026-07-29",
+  },
+};
+
+SparkTrail is the working name for this voice-to-note project. The MVP starts as an audio-file-to-note pipeline.
+
+SparkTrail could later grow into capture surfaces like a recorder, hotkeys, or a tray app. This article is only about the MVP plan: whether an existing voice recording can become a Markdown note I would keep.
+
+SparkTrail is the step after recording: take one or more audio files and write the transcript/note pair to disk.
+
+## The MVP shape
+
+The first build is a CLI. It should accept one audio file or a folder of audio files:
+
+<DemoFrame title="MVP pipeline">
+  <SparkTrailFlow />
+</DemoFrame>
+
+```sh
+# one file
+sparktrail input.mp3 --out ./notes
+
+# a folder of recordings
+sparktrail ./recordings --out ./notes
+```
+
+For each input, the CLI writes the transcript and note as separate Markdown files.
+
+The transcript keeps the spoken source available in text form. The note is the file meant for later use: cleaned up, grouped, and still close to the original recording. It should not become a polished article. It should not invent a better idea than the one that was actually spoken.
+
+Capture stays outside the first boundary. A dedicated recorder can come later. Until then, the phone recorder is good enough input.
+
+## Why there are two model steps
+
+The pipeline has two model steps because the two jobs are different.
+
+First, audio needs to become text. The current direction is [`whisper.cpp`](https://github.com/ggml-org/whisper.cpp), because it can run locally, works on CPU, and has a clear model-size ladder.
+
+Second, the transcript needs to become a note. Spoken text usually has filler, repeated starts, unfinished sentences, and ideas arriving out of order. The cleanup step should restructure that material into a small Markdown note without deleting uncertainty or open questions.
+
+Those steps should stay separate in the architecture. Speech-to-text gets a transcriber boundary. Transcript cleanup gets a note-cleaner boundary that can talk to local OpenAI-compatible runtimes such as Ollama or LM Studio. Treating both as one generic AI call would hide the main split in the system.
+
+## Stack choice
+
+The implementation starts as a Node and TypeScript CLI, using `pnpm` for package management and `tsx` while developing. That is only the development shape. Compiled JavaScript or a more app-like package can come later.
+
+The code should start as a small modular CLI, not one large script and not a multi-package system. The first seams are CLI parsing, configuration, transcription, cleanup, and file output. That keeps the model boundaries visible without adding much structure before the note shape is tested.
+
+## Local by default
+
+The privacy rule for the MVP is simple: processing stays local.
+
+SparkTrail handles raw voice-note material, so the first version keeps the processing path local. Speech-to-text runs on the machine. Transcript cleanup runs on the machine. There is no cloud fallback in the MVP.
+
+The default output stays small too: one transcript file and one note file per input. SparkTrail should not store source audio, source paths, prompts, model responses, or debug artifacts unless an explicit debug mode asks for them.
+
+## Roadmap before code
+
+Before implementation, I set up a public repository and used the [Wayfinder skill](https://github.com/mattpocock/agent-skills/tree/main/skills/wayfinder) to turn the loose idea into a route of decisions.
+
+The map matters because SparkTrail could easily become too many projects at once: a recorder, a transcription tool, a note-taking app, or a local model playground. It keeps this Lab experiment smaller.
+
+It also makes the project easier to resume. SparkTrail is a side project, so progress will happen in small pockets of time. A roadmap gives me a faster way back in than rereading scattered notes or rediscovering the same decisions.
+
+The initial constraints are:
+
+- accept an existing audio file or folder of audio files as input
+- write a transcript and a structured note as separate Markdown files
+- avoid storing source audio by default
+- avoid writing prompts, model responses, source paths, or debug artifacts unless an explicit debug mode asks for them
+- keep the implementation small enough to change as the note shape gets tested
+
+The code and roadmap live in the [SparkTrail repository](https://github.com/Jumace/SparkTrail).
+
+## What comes after this plan
+
+The next work is not a recorder. It is sample material: real or realistic voice notes that can test the pipeline.
+
+The open question is the note shape. A minimal shape is enough for now: title, summary, and cleaned note. If that output is not usable, the pipeline needs to change before any capture surface is added. If it works, capture surfaces can come later.
+
+Future Lab entries can cover those steps separately: sample material, the first note format, the transcription adapter, the cleanup prompt, and eventually the capture surface.

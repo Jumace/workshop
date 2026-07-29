@@ -15,7 +15,7 @@ export const contentReferences = [
     slug: "the-notes-i-never-take",
     href: "/notebook/the-notes-i-never-take",
     sourcePath: "content/notebook/the-notes-i-never-take/index.mdx",
-    metadata: {"id":"the-notes-i-never-take","type":"notebook","title":"The notes I never take","description":"Lowering the friction between initial thoughts and useful notes.","publishedAt":"2026-07-29","updatedAt":"2026-07-29","status":"published","tags":["local-ai","notes","workflow","curiosity"],"series":{"slug":"building-the-workshop","title":"Building the workshop","order":4},"related":{"notebook":[],"lab":[]},"featured":false},
+    metadata: {"id":"the-notes-i-never-take","type":"notebook","title":"The notes I never take","description":"Lowering the friction between initial thoughts and useful notes.","publishedAt":"2026-07-29","updatedAt":"2026-07-29","status":"published","tags":["local-ai","notes","workflow","curiosity"],"series":{"slug":"building-the-workshop","title":"Building the workshop","order":4},"related":{"notebook":[],"lab":["sparktrail-mvp-plan"]},"featured":false},
   },
   {
     type: "notebook",
@@ -37,6 +37,13 @@ export const contentReferences = [
     href: "/lab/sharing-discovery",
     sourcePath: "content/lab/sharing-discovery/index.mdx",
     metadata: {"id":"sharing-discovery","type":"lab","title":"Sharing and discovery for a content-first site","description":"Exploring better previews, metadata, feeds, and Markdown formats for both readers and AI tools.","publishedAt":"2026-07-18","updatedAt":"2026-07-18","status":"draft","tags":["sharing","seo","markdown","discoverability"],"related":{"notebook":[],"lab":[]},"featured":false,"project":{"stage":"exploring","startedAt":"2026-07-18","lastActivityAt":"2026-07-18"}},
+  },
+  {
+    type: "lab",
+    slug: "sparktrail-mvp-plan",
+    href: "/lab/sparktrail-mvp-plan",
+    sourcePath: "content/lab/sparktrail-mvp-plan/index.mdx",
+    metadata: {"id":"sparktrail-mvp-plan","type":"lab","title":"Planning the voice-to-note MVP","description":"The first planning boundaries for a local-first tool that turns messy spoken thoughts into usable notes.","publishedAt":"2026-07-29","updatedAt":"2026-07-29","status":"published","tags":["local-ai","notes","voice","workflow"],"series":{"slug":"building-the-workshop","title":"Building the workshop","order":5},"related":{"notebook":["the-notes-i-never-take"],"lab":[]},"featured":false,"project":{"stage":"exploring","startedAt":"2026-07-29","lastActivityAt":"2026-07-29"}},
   },
   {
     type: "lab",
