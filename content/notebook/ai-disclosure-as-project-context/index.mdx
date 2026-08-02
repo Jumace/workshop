@@ -1,0 +1,82 @@
+export const metadata = {
+  id: "missing-context-around-ai-assisted-work",
+  type: "notebook",
+  title: "The Missing Context Around AI-Assisted Work",
+  description:
+    "Why AI use in software projects feels worth documenting, especially when it changes how the work was shaped, reviewed, and understood.",
+  publishedAt: "2026-08-02",
+  updatedAt: "2026-08-02",
+  status: "published",
+  tags: ["ai", "open-source", "workflow", "disclosure"],
+  related: {
+    notebook: [],
+    lab: [],
+  },
+  featured: false,
+};
+
+I have been circling the same question for a while: when AI is involved in a software project, how much of that should developers disclose?
+
+Two things made that question more concrete, and more worth focusing on now.
+The [EU AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) made disclosure feel more present as a topic, even if the project-level transparency I am thinking about here is not the same as legal compliance.
+The Workbench also made it personal. This site has AI-assisted code, AI-assisted writing, and a development process where I still make decisions, review parts of the architecture, shape the direction, and bring the ideas I want to write about, but do not pretend the work came only from me typing alone into a blank file.
+
+That pushed the question beyond content and into code. If AI helped shape the implementation, configuration, testing, architecture, documentation, or surrounding decisions, that feels like part of the project's context. The question gets especially interesting in open source, where another developer may want to know how the project was made before they depend on it or contribute to it.
+
+## Why AI feels different
+
+It is tempting to say that AI is just another tool in the developer toolbelt. I understand that instinct. Software projects are already full of tools, and nobody expects a maintainer to explain the role of every framework, linter, or build system they use.
+
+AI feels different to me for two reasons.
+
+The first is that it is nondeterministic. A linter can be opinionated, and a framework can shape the architecture, but they usually do the same thing when given the same inputs and configuration. AI does not behave that way. The same prompt can produce slightly different answers, or sometimes very different ones, depending on the model, the context, the tool around it, and the moment it is used. That does not make it useless. It does mean its role in the work is harder to understand from the repository alone.
+
+The second difference is that AI can spread across the whole development process. It can write code, suggest architecture, generate tests, explain errors, draft documentation, review changes, and help plan the next step. Most tools occupy a narrower place. They may overlap with neighboring parts of the workflow, but they do not usually move so easily between planning, implementation, review, and explanation.
+
+That wide reach matters because AI use is not only a question of whether a few lines were generated. It can change how a project was approached and how it evolved.
+
+## The part a reader cannot see
+
+There is a big difference between using AI as a faster autocomplete and using it as the main way a project moves from idea to implementation. Both can be reasonable. They just do not mean the same thing.
+
+In one project, a developer might ask for a small helper function. They read every line, adjust the result, and treat the model output like a rough suggestion.
+
+In another project, the developer might work closer to [spec-driven development](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html): describe what should exist, let AI produce larger parts of the codebase, and then judge the result mostly by whether it works and fits the intended shape.
+
+In that mode, the important work may not be visible from the final code alone. Specs, tests, and product behavior can carry a lot of the human direction, and sometimes those artifacts are part of the repository too. Even then, they do not automatically show how the work happened: which decisions were human-led, which parts were generated, and where the review actually happened. That does not make the workflow better or worse. It just means the code itself does not show the whole process.
+
+Different readers will use that information differently. A contributor may want to know what kind of AI-assisted changes fit the project. A maintainer may want to understand where future changes need extra context. Someone deciding whether to depend on the project may use the same disclosure as part of their own trust decision. Where were humans involved? Which parts were steered by a person? Which parts mostly came from AI and were checked through tests, behavior, or later review?
+
+Those questions are not answered by the code alone, and they are only partly answered by specs or tests. They are process questions. That is why disclosure should not be a scorecard. It should be a way to explain how the work happened.
+
+## Disclosure is not a ranking system
+
+I do not think there is one correct amount of AI to use in a software project.
+
+The answer depends on the project, the maintainer, the risks, the audience, and the kind of work being done. A personal experiment can use a different process than a library many people depend on. A prototype can move differently from infrastructure code. If AI only helped draft documentation, the important question may be accuracy. If AI generated large parts of the implementation, the important questions may be review, tests, security, and long-term maintenance.
+
+The same is true in the other direction. A maintainer might decide not to use AI at all. They might also decide that they do not want AI-generated contributions. That is a valid project boundary too, and it is also useful to document. The point is not to make every project converge on the same workflow. The point is to make the workflow visible enough that other people know what they are looking at.
+
+That matters because open source is not only code. It is also expectations. A project tells people how to install it, how to contribute, what license applies, how releases are handled, and what kind of support they can expect. AI disclosure belongs in that same family of information. It does not tell readers whether the work is good or bad. It helps them understand the process behind it.
+
+## What I would want to disclose
+
+I do not want to mark every function, test, or paragraph of documentation that was created with AI support. I also do not want the disclosure to depend on hard-to-answer questions, like how much a developer has to change generated code before it stops counting as AI-generated. That level of detail would make the discussion more precise in theory, but also less useful in practice. I am more interested in the AI usage philosophy of the project: where AI belongs in the workflow, what kind of human involvement surrounds it, and what expectations contributors should have.
+
+The useful fields are probably not a badge that says "AI used" or "AI free." They are closer to process notes:
+
+- **Where AI was used:** planning, architecture, implementation, tests, documentation, review, or content.
+- **How much AI shaped the work:** small suggestions, large generated sections, spec-driven implementation, or ongoing pair-programming assistance.
+- **Where humans were involved:** code review, behavior checks, architecture decisions, documentation, security-sensitive parts, or selected areas of the process.
+- **What boundaries the project has:** whether AI-generated contributions are welcome, discouraged, or expected to meet specific review standards.
+- **Which parts are intentionally not covered:** places where the maintainer is not making a strong claim, or where the process changed over time.
+
+That last point matters. Disclosure should not force false precision. If a project has been built over months or years, the honest answer may be uneven. Some parts may have been written by hand, some heavily assisted, some reviewed carefully, and some inherited from earlier experiments. A useful disclosure should make that unevenness easier to see, not hide it behind a single label.
+
+## Starting with my own projects
+
+The next step is to turn this into a personal standard I can reuse without thinking too much about the format every time.
+
+The Workbench is the obvious first place to try it, because it already mixes code, writing, experiments, and AI-assisted process in a way that is worth being clear about. Future tools I build should be able to use the same pattern. If AI helped shape the code, the architecture, the tests, the docs, or the surrounding content, I want a simple way to make that visible in the project instead of leaving people to guess.
+
+Maybe that stays as a personal convention. Maybe it becomes useful to someone else. Either way, the habit feels right: if AI is becoming part of how software is made, then documenting that process should become part of the software too.

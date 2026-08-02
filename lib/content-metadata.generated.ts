@@ -5,6 +5,13 @@ import type { ContentReference } from "./content-metadata";
 export const contentReferences = [
   {
     type: "notebook",
+    slug: "ai-disclosure-as-project-context",
+    href: "/notebook/ai-disclosure-as-project-context",
+    sourcePath: "content/notebook/ai-disclosure-as-project-context/index.mdx",
+    metadata: {"id":"missing-context-around-ai-assisted-work","type":"notebook","title":"The Missing Context Around AI-Assisted Work","description":"Why AI use in software projects feels worth documenting, especially when it changes how the work was shaped, reviewed, and understood.","publishedAt":"2026-08-02","updatedAt":"2026-08-02","status":"published","tags":["ai","open-source","workflow","disclosure"],"related":{"notebook":[],"lab":[]},"featured":false},
+  },
+  {
+    type: "notebook",
     slug: "local-llm-journey",
     href: "/notebook/local-llm-journey",
     sourcePath: "content/notebook/local-llm-journey/index.mdx",
