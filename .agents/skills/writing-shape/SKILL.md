@@ -10,6 +10,8 @@ The user has passed (or will pass) a markdown file of raw material. Treat it as 
 
 Then run a shaping session that produces a separate article document. This is **exploit**: the exploring is done, the pile is fixed — commit to a structure and mine the pile to fill it. Do not edit the raw material file — it is read-only to this skill.
 
+Before deciding where the article belongs, read `VISION.md` and use it to understand the difference between a notebook article and a lab article. If the user has not clearly specified notebook vs. lab, and the raw material does not make the article type obvious, ask which one to create before choosing the destination.
+
 If the user did not say where to save the article, ask once and remember the path.
 
 If the destination article format uses metadata/frontmatter, create the required metadata when you create the article unless the user explicitly says not to. The page title belongs in metadata. Do not duplicate that title as the first Markdown heading; start the body with prose or with a section heading that does different work from the title.
