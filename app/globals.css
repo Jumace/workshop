@@ -215,6 +215,14 @@ textarea {
   letter-spacing: -0.035em;
 }
 
+@media (max-width: 560px) {
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    scroll-margin-top: 11rem;
+  }
+}
+
 .prose h1 {
   margin: 0 0 1.25rem;
   font-size: clamp(2.4rem, 6vw, 4.7rem);

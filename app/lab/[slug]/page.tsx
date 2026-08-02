@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { ArticleReadingMap } from "@/app/components/article-reading-map";
 import { LabStateLabel, MetadataRow, TagList } from "@/app/components/content-meta";
 import { PageIntro } from "@/app/components/page-intro";
 import { RelatedContent } from "@/app/components/related-content";
 import { getLabEntry, getLabSlugs } from "@/app/lib/content";
 import { absoluteUrl } from "@/app/lib/site";
 import { getContentReferencesByIds } from "@/lib/content-metadata";
+import styles from "./page.module.css";
 
 export async function generateStaticParams() {
   const slugs = await getLabSlugs();
@@ -64,27 +66,40 @@ export default async function LabEntryPage({ params }: { params: Promise<{ slug:
 
   const { Component } = entry;
   const relatedItems = getContentReferencesByIds([...entry.related.notebook, ...entry.related.lab]);
+  const showReadingMap = entry.sections.length >= 2;
 
   return (
-    <article className="pageShell">
-      <PageIntro
-        eyebrow="LAB"
-        title={entry.title}
-        description={entry.description}
-        meta={
-          <>
-            <div>
-              <LabStateLabel state={entry.project.stage} />
-            </div>
-            <MetadataRow publishedAt={entry.publishedAt} updatedAt={entry.updatedAt} />
-            <TagList tags={entry.tags} />
-          </>
-        }
-      />
-      <div className="prose">
+    <article
+      className={styles.entryShell}
+      data-has-reading-map={showReadingMap ? "true" : undefined}
+    >
+      <div className={styles.introArea}>
+        <PageIntro
+          eyebrow="LAB"
+          title={entry.title}
+          description={entry.description}
+          meta={
+            <>
+              <div>
+                <LabStateLabel state={entry.project.stage} />
+              </div>
+              <MetadataRow publishedAt={entry.publishedAt} updatedAt={entry.updatedAt} />
+              <TagList tags={entry.tags} />
+            </>
+          }
+        />
+      </div>
+      {showReadingMap ? (
+        <aside className={styles.readingMap}>
+          <ArticleReadingMap sections={entry.sections} label="In this Lab" />
+        </aside>
+      ) : null}
+      <div className={`prose ${styles.proseArea}`}>
         <Component />
       </div>
-      <RelatedContent items={relatedItems} />
+      <div className={styles.relatedArea}>
+        <RelatedContent items={relatedItems} />
+      </div>
     </article>
   );
 }
