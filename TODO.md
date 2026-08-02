@@ -3,7 +3,7 @@
 ## 1. Production Identity
 
 - [ ] Choose the final production domain. _(deferred until late launch prep)_
-- [ ] Set `NEXT_PUBLIC_SITE_URL` to the canonical production URL. _(only needed once a custom domain exists)_
+- [x] Default the canonical site URL to the production domain, with `SITE_URL` available for local overrides.
 - [x] Review the site title, description, and metadata copy.
 - [x] Confirm the default Open Graph image works for sharing.
 

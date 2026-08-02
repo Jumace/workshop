@@ -2,7 +2,11 @@
 
 The production target is Cloudflare Workers via OpenNext.
 
-Set `NEXT_PUBLIC_SITE_URL` to the canonical production URL when you have a custom domain. Until then, the site falls back to `http://localhost:3000`. RSS, sitemap, and Open Graph metadata use this value.
+The canonical site URL defaults to `https://cebulla.dev` in code. RSS, sitemap, canonical links, and Open Graph metadata use this value.
+
+Use `SITE_URL` only when an environment needs to override that default. For local development, put `SITE_URL=http://localhost:3000` in `.env.development.local`, not `.env`, so local production builds and deploys still use the production default. Preview deployments can use the production URL as their canonical URL.
+
+`NEXT_PUBLIC_SITE_URL` is still accepted as a fallback for existing environments, but `SITE_URL` is preferred because the value is only used by server-rendered routes and metadata.
 
 Cloudflare deployment:
 
