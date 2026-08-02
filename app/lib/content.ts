@@ -18,11 +18,13 @@ export type NotebookEntry = NotebookMetadata & {
   slug: string;
   href: string;
   readingTime: string;
+  sections: ArticleSection[];
 };
 
 export type LabEntry = LabMetadata & {
   slug: string;
   href: string;
+  sections: ArticleSection[];
 };
 
 export type LabPreview = LabMetadata & {
@@ -41,6 +43,11 @@ type ContentEntry<TMetadata> = {
   module: ContentModule<TMetadata>;
 };
 
+export type ArticleSection = {
+  id: string;
+  title: string;
+};
+
 function isVisible(status: ContentStatus) {
   return status === "published" || process.env.NODE_ENV !== "production";
 }
@@ -55,6 +62,45 @@ function getReadingTime(markdown: string) {
   const minutes = Math.max(1, Math.round(words / 220));
 
   return `${minutes} min read`;
+}
+
+function createHeadingId(title: string, usedIds: Map<string, number>) {
+  const baseId = title
+    .toLowerCase()
+    .replace(/<[^>]+>/g, "")
+    .replace(/[`*_~]/g, "")
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .trim()
+    .replace(/\s+/g, "-");
+  const id = baseId || "section";
+  const count = usedIds.get(id) ?? 0;
+
+  usedIds.set(id, count + 1);
+
+  return count === 0 ? id : `${id}-${count}`;
+}
+
+function getArticleSections(markdown: string) {
+  const withoutCodeBlocks = markdown.replace(/```[\s\S]*?```/g, "");
+  const usedIds = new Map<string, number>();
+  const sections: ArticleSection[] = [];
+
+  for (const match of withoutCodeBlocks.matchAll(/^## (?!#)(.+)$/gm)) {
+    const title = match[1]
+      .replace(/\[([^\]]+)]\([^)]+\)/g, "$1")
+      .replace(/[`*_~]/g, "")
+      .replace(/<[^>]+>/g, "")
+      .trim();
+
+    if (title.length > 0) {
+      sections.push({
+        id: createHeadingId(title, usedIds),
+        title,
+      });
+    }
+  }
+
+  return sections;
 }
 
 function getEntry<TMetadata>(entries: readonly ContentEntry<TMetadata>[], slug: string) {
@@ -104,6 +150,7 @@ export async function getNotebookEntry(slug: string) {
     slug,
     href: `/notebook/${slug}`,
     readingTime: getReadingTime(entry.source),
+    sections: getArticleSections(entry.source),
     Component: mod.default,
   };
 }
@@ -135,6 +182,7 @@ export async function getLabEntry(slug: string) {
     ...metadata,
     slug,
     href: `/lab/${slug}`,
+    sections: getArticleSections(entry.source),
     Component: mod.default,
   };
 }

@@ -1,0 +1,57 @@
+.entryShell {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, var(--content-width))
+    minmax(0, 1fr);
+  column-gap: 0;
+  width: min(100% - 2rem, 1320px);
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5rem) 0 6rem;
+}
+
+.entryShell:not([data-has-reading-map="true"]) {
+  display: block;
+  width: min(100% - 2rem, var(--content-width));
+}
+
+.introArea,
+.proseArea,
+.relatedArea {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.introArea {
+  grid-row: 1;
+}
+
+.readingMap {
+  position: sticky;
+  top: 6rem;
+  grid-column: 3;
+  grid-row: 2 / span 2;
+  align-self: start;
+  width: min(15rem, calc(100% - 2rem));
+  margin-left: clamp(2rem, 5vw, 4rem);
+}
+
+.proseArea {
+  grid-row: 2;
+}
+
+.relatedArea {
+  grid-row: 3;
+}
+
+@media (max-width: 1179px) {
+  .entryShell {
+    display: block;
+    width: min(100% - 2rem, var(--content-width));
+  }
+
+  .readingMap {
+    position: static;
+    display: block;
+  }
+}

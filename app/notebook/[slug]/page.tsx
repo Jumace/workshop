@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { ArticleReadingMap } from "@/app/components/article-reading-map";
 import { MetadataRow, TagList } from "@/app/components/content-meta";
 import { PageIntro } from "@/app/components/page-intro";
 import { RelatedContent } from "@/app/components/related-content";
 import { getNotebookEntry, getNotebookSlugs } from "@/app/lib/content";
 import { absoluteUrl } from "@/app/lib/site";
 import { getContentReferencesByIds } from "@/lib/content-metadata";
+import styles from "./page.module.css";
 
 export async function generateStaticParams() {
   const slugs = await getNotebookSlugs();
@@ -67,29 +69,42 @@ export default async function NotebookEntryPage({ params }: { params: Promise<{ 
 
   const { Component } = post;
   const relatedItems = getContentReferencesByIds([...post.related.notebook, ...post.related.lab]);
+  const showReadingMap = post.sections.length >= 2;
 
   return (
-    <article className="pageShell">
-      <PageIntro
-        eyebrow="NOTEBOOK"
-        title={post.title}
-        description={post.description}
-        meta={
-          <>
-            <MetadataRow
-              publishedAt={post.publishedAt}
-              updatedAt={post.updatedAt}
-              readingTime={post.readingTime}
-              series={post.series}
-            />
-            <TagList tags={post.tags} />
-          </>
-        }
-      />
-      <div className="prose">
+    <article
+      className={styles.entryShell}
+      data-has-reading-map={showReadingMap ? "true" : undefined}
+    >
+      <div className={styles.introArea}>
+        <PageIntro
+          eyebrow="NOTEBOOK"
+          title={post.title}
+          description={post.description}
+          meta={
+            <>
+              <MetadataRow
+                publishedAt={post.publishedAt}
+                updatedAt={post.updatedAt}
+                readingTime={post.readingTime}
+                series={post.series}
+              />
+              <TagList tags={post.tags} />
+            </>
+          }
+        />
+      </div>
+      {showReadingMap ? (
+        <aside className={styles.readingMap}>
+          <ArticleReadingMap sections={post.sections} />
+        </aside>
+      ) : null}
+      <div className={`prose ${styles.proseArea}`}>
         <Component />
       </div>
-      <RelatedContent items={relatedItems} />
+      <div className={styles.relatedArea}>
+        <RelatedContent items={relatedItems} />
+      </div>
     </article>
   );
 }
