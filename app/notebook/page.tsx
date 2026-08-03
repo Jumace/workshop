@@ -20,13 +20,15 @@ export default async function NotebookPage() {
     <div className="pageShell overviewPageShell">
       <PageIntro
         title="Notebook"
-        description="Writing the parts that code does not explain. Notes, explanations, and reflections for working through ideas, following questions, and making sense of what I learn along the way."
+        description="Writing the parts that code does not explain."
         variant="overview"
       />
       {posts.length > 0 ? (
         <section className={styles.section} aria-labelledby="notebook-collection">
           <div className="sectionHeader">
-            <h2 id="notebook-collection">Recent notes</h2>
+            <h2 id="notebook-collection" className="tapeHeading">
+              Recent thoughts
+            </h2>
           </div>
           <PostList posts={posts} />
         </section>
