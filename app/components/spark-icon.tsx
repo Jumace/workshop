@@ -1,26 +1,21 @@
-export function SparkIcon({ className }: { className: string }) {
+type SparkIconProps = {
+  className: string;
+  variant?: "full" | "compact";
+};
+
+export function SparkIcon({ className, variant = "full" }: SparkIconProps) {
   return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M15.5 15.3 C15.2 11.3 14.8 7.1 14.2 2.5" strokeWidth="2.1" />
-        <path d="M16.4 15.2 C18.7 11.9 21.4 8.8 24.6 5.7" strokeWidth="2" />
-        <path d="M16.8 16 C20.8 15.5 25 14.8 29.5 13.8" strokeWidth="2.1" />
-        <path d="M16.4 16.8 C18 20.8 19.4 24.8 20.5 29.5" strokeWidth="2.1" />
-        <path d="M15.5 16.9 C12.9 20.2 10 23.6 6.4 27" strokeWidth="2" />
-        <path d="M15.1 16.2 C11.1 16.6 7 16.8 2.7 16.7" strokeWidth="2.1" />
-        <path d="M15.2 15.6 C11.8 13.6 8.5 11.2 5.2 8.5" strokeWidth="2" />
-        <path d="M16 15.2 C16.8 12.6 17.7 10.2 18.8 7.8" strokeWidth="1.35" />
-        <path d="M16.7 15.6 C19.4 13.9 21.6 12.7 23.7 11.8" strokeWidth="1.3" />
-        <path d="M16.8 16.4 C19.2 17.3 21.7 18.3 24.2 19.8" strokeWidth="1.3" />
-        <path d="M16 16.9 C15.4 19.4 14.7 21.8 13.7 24.2" strokeWidth="1.3" />
-        <path d="M15.2 16.6 C12.8 18.2 10.5 19.7 8.2 20.8" strokeWidth="1.3" />
-        <path d="M15.3 15.6 C13.1 13.3 11.5 11.2 10.1 9" strokeWidth="1.25" opacity=".78" />
-        <path
-          d="M13.8 15.8 C14.5 14.3 16.5 13.8 18 14.8 C18.2 16.5 16.9 18 15.2 18 C13.9 17.8 13.3 16.8 13.8 15.8Z"
-          strokeWidth="1.45"
-        />
-        <path d="M14.2 14.8 C15.2 15.6 16.5 16.5 17.8 17" strokeWidth="1" />
-        <path d="M14.3 17.3 C15.4 16.4 16.5 15.4 17.6 14.7" strokeWidth="1" />
+    <svg className={className} viewBox="171 110 716 708" fill="none" aria-hidden="true">
+      <g fill="currentColor">
+        <path d="M 887 110 L 876 116 L 853 137 L 776 217 L 697 306 L 609 410 L 542 483 L 534 483 L 500 462 L 374 368 L 333 346 L 316 341 L 312 342 L 335 367 L 387 415 L 455 483 L 461 486 L 455 472 L 434 441 L 435 439 L 464 463 L 517 516 L 423 558 L 372 584 L 304 626 L 279 645 L 273 652 L 277 653 L 396 591 L 466 559 L 467 561 L 406 616 L 377 645 L 351 676 L 354 677 L 391 641 L 427 610 L 470 577 L 514 547 L 516 548 L 487 610 L 450 707 L 432 765 L 424 799 L 422 818 L 426 813 L 462 730 L 503 650 L 524 615 L 565 557 L 655 615 L 671 622 L 673 620 L 666 608 L 605 528 L 705 471 L 781 432 L 828 405 L 828 403 L 769 419 L 668 452 L 615 473 L 613 472 L 706 338 L 759 274 L 760 276 L 716 358 L 716 364 L 886 118 Z" />
+        <path d="M 445 504 L 422 500 L 378 500 L 330 505 L 275 516 L 224 530 L 189 542 L 171 552 L 176 553 L 280 537 L 430 526 L 365 515 L 367 513 Z" />
+        <path d="M 523 223 L 521 223 L 515 263 L 511 347 L 512 414 L 515 438 L 519 450 L 522 426 L 524 359 L 526 357 L 536 404 L 544 427 L 549 434 L 527 235 Z" />
+        {variant === "full" ? (
+          <>
+            <path d="M 852 311 L 845 307 L 836 307 L 822 314 L 809 331 L 810 343 L 818 348 L 829 348 L 843 340 L 851 330 L 854 322 Z" />
+            <path d="M 295 695 L 292 694 L 285 698 L 275 711 L 280 712 L 286 709 L 294 700 Z" />
+          </>
+        ) : null}
       </g>
     </svg>
   );

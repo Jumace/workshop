@@ -14,8 +14,8 @@
 }
 
 .spark {
-  width: 1.65rem;
-  height: 1.65rem;
+  width: 2.25rem;
+  height: 2.25rem;
   color: var(--cyan);
   opacity: 0.72;
   transform: rotate(-8deg);
