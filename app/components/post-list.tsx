@@ -19,7 +19,6 @@ export function PostList({
       {posts.map((post) => (
         <EditorialContentRow
           key={post.slug}
-          emphasis="quiet"
           href={post.href}
           title={post.title}
           description={post.description}
