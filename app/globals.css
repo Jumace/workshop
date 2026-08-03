@@ -164,6 +164,79 @@ textarea {
   letter-spacing: -0.045em;
 }
 
+.sectionHeader .tapeHeading {
+  --tape-color: #e3dac6;
+  --tape-ink: #171814;
+  --tape-angle: -0.7deg;
+
+  position: relative;
+  display: inline-block;
+  justify-self: start;
+  width: fit-content;
+  padding: 0.34rem 1rem 0.28rem;
+  color: var(--tape-ink);
+  background:
+    radial-gradient(circle at 8% 28%, rgb(90 72 45 / 14%) 0 1px, transparent 2px),
+    radial-gradient(circle at 76% 65%, rgb(255 255 255 / 38%) 0 1px, transparent 2.5px),
+    repeating-linear-gradient(
+      96deg,
+      transparent 0 3px,
+      rgb(70 58 38 / 5%) 3px 4px,
+      transparent 4px 8px
+    ),
+    linear-gradient(
+      105deg,
+      rgb(255 255 255 / 18%),
+      transparent 24%,
+      rgb(70 55 35 / 9%) 52%,
+      transparent 76%,
+      rgb(255 255 255 / 14%)
+    ),
+    var(--tape-color);
+  background-blend-mode: multiply, soft-light, multiply, soft-light, normal;
+  clip-path: polygon(
+    2% 0%,
+    16% 1.5%,
+    32% 0.5%,
+    49% 1.2%,
+    68% 0%,
+    84% 1.4%,
+    98% 0%,
+    100% 13%,
+    98% 44%,
+    100% 57%,
+    98% 100%,
+    82% 98.8%,
+    65% 100%,
+    48% 98.7%,
+    30% 100%,
+    14% 98.5%,
+    2% 100%,
+    0% 90%,
+    1.5% 52%,
+    0% 13%
+  );
+  font-family: var(--font-handwritten), var(--font-geist-mono), monospace;
+  font-size: clamp(1.65rem, 3.2vw, 2.15rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: rotate(var(--tape-angle));
+  filter: drop-shadow(0 2px 1px rgb(0 0 0 / 24%)) drop-shadow(0 4px 7px rgb(0 0 0 / 14%));
+}
+
+.sectionHeader .tapeHeading::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(102deg, transparent 0 31%, rgb(255 255 255 / 22%) 32%, transparent 34%),
+    linear-gradient(to bottom, rgb(255 255 255 / 10%), transparent 28%, rgb(60 45 25 / 8%));
+  mix-blend-mode: soft-light;
+}
+
 .buttonPrimary,
 .buttonSecondary {
   display: inline-flex;
