@@ -18,11 +18,7 @@ export default async function NotebookPage() {
 
   return (
     <div className="pageShell overviewPageShell">
-      <PageIntro
-        title="Notebook"
-        description="Writing the parts that code does not explain."
-        variant="overview"
-      />
+      <PageIntro title="Notebook" description="What the code leaves out." variant="overview" />
       {posts.length > 0 ? (
         <section className={styles.section} aria-labelledby="notebook-collection">
           <div className="sectionHeader">
