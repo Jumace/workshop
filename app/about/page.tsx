@@ -16,7 +16,6 @@ export default function AboutPage() {
   return (
     <div className="pageShell">
       <PageIntro
-        eyebrow="ABOUT"
         title="Why I build"
         description="Curiosity is a superpower if you let yourself follow it."
       />

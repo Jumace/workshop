@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="pageShell">
-      <PageIntro eyebrow="PRIVACY" title="Privacy" description="Last updated: July 27, 2026." />
+      <PageIntro title="Privacy" description="Last updated: July 27, 2026." />
       <article className="prose legalProse">
         {/* TODO: Confirm Cloudflare log retention and final production deployment details. */}
         {/* TODO: Confirm whether an Impressum is required for this site. */}
