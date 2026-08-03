@@ -18,7 +18,7 @@ export default async function LabPage() {
 
   return (
     <div className="pageShell overviewPageShell">
-      <PageIntro title="Lab" description="Experiments with honest boundaries." variant="overview" />
+      <PageIntro title="Lab" description="Where ideas take shape." variant="overview" />
       {entries.length > 0 ? (
         <section className={styles.section} aria-labelledby="lab-collection">
           <div className="sectionHeader">
