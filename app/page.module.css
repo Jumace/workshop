@@ -119,30 +119,31 @@
 
 .workshopMap {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.65fr) minmax(0, 1fr);
-  gap: clamp(1rem, 3vw, 1.85rem);
-  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.1rem, 3vw, 2rem) clamp(1.15rem, 3.4vw, 2.35rem);
+  align-items: start;
   margin-top: clamp(1.25rem, 3vw, 2.25rem);
 }
 
 .modeCard {
   position: relative;
-  padding-top: 4.65rem;
+  order: 1;
+  padding-top: 3.45rem;
 }
 
 .tapeLabel {
   --tape-color: #e3dac6;
   --tape-ink: #171814;
   --tape-angle: -1.2deg;
-  --tape-padding-x: 1.6rem;
-  --tape-padding-y: 0.45rem;
+  --tape-padding-x: 1.25rem;
+  --tape-padding-y: 0.34rem;
 
   position: absolute;
-  top: 0;
+  top: 1.8rem;
   left: 50%;
   z-index: 1;
   isolation: isolate;
-  min-width: 13.5rem;
+  min-width: 11.25rem;
   padding: var(--tape-padding-y) var(--tape-padding-x);
   color: var(--tape-ink);
   background:
@@ -203,7 +204,7 @@
     0% 13%
   );
   font-family: var(--font-handwritten), var(--font-geist-mono), monospace;
-  font-size: 3rem;
+  font-size: 2.45rem;
   font-weight: 700;
   letter-spacing: 0.015em;
   line-height: 1;
@@ -261,31 +262,71 @@
 }
 
 .modeContent {
-  min-height: 19.5rem;
-  padding: 0;
+  position: relative;
+  min-height: 15.55rem;
+  padding: clamp(1.42rem, 2.7vw, 1.75rem) clamp(1rem, 2.5vw, 1.45rem) clamp(0.78rem, 1.7vw, 1.05rem);
+  color: var(--text);
+  background:
+    radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.026), transparent 26%),
+    radial-gradient(circle at 86% 12%, rgba(146, 199, 163, 0.04), transparent 28%),
+    radial-gradient(circle at 76% 88%, rgba(0, 0, 0, 0.1), transparent 34%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 2.32rem,
+      rgba(222, 214, 196, 0.022) 2.32rem calc(2.32rem + 1px)
+    ),
+    repeating-linear-gradient(94deg, rgba(222, 214, 196, 0.01) 0 1px, transparent 1px 7px),
+    rgba(18, 22, 16, 0.58);
+  background-blend-mode: soft-light, screen, multiply, normal, soft-light, normal;
+  clip-path: polygon(
+    0.5% 0.8%,
+    20% 0%,
+    38% 0.7%,
+    56% 0.2%,
+    76% 0.7%,
+    99.3% 0%,
+    100% 21%,
+    99.4% 44%,
+    100% 66%,
+    99.1% 100%,
+    78% 99.4%,
+    58% 100%,
+    39% 99.5%,
+    18% 100%,
+    0% 99.1%,
+    0.7% 72%,
+    0% 48%,
+    0.5% 24%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(222, 214, 196, 0.075),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.14);
 }
 
 .modeContent h3 {
   margin: 0;
-  color: var(--cyan);
+  color: rgba(146, 199, 163, 0.9);
   font-family: var(--font-geist-mono), monospace;
   font-size: clamp(1.18rem, 1.85vw, 1.42rem);
   font-weight: 700;
   line-height: 1.35;
+  text-align: center;
 }
 
 .modeContent p {
-  margin: 0.85rem 0 0;
+  max-width: 27rem;
+  margin: 0.85rem auto 0;
   color: rgba(222, 214, 196, 0.76);
   font-family: var(--font-geist-mono), monospace;
   line-height: 1.6;
+  text-align: center;
 }
 
 .modeContent ul {
   display: grid;
   gap: 0.68rem;
   margin: 1.15rem 0 0;
-  border-top: 1px solid rgba(222, 214, 196, 0.22);
+  border-top: 1px solid rgba(222, 214, 196, 0.14);
   padding: 1rem 0 0;
   list-style: none;
 }
@@ -299,18 +340,23 @@
 }
 
 .modeContent li::before {
-  color: var(--cyan);
+  color: rgba(146, 199, 163, 0.84);
   content: "*";
 }
 
 .relationship {
   position: relative;
-  display: grid;
+  grid-column: 1 / -1;
+  order: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   justify-items: center;
-  gap: 0.22rem;
-  color: rgba(222, 214, 196, 0.86);
+  gap: 0.15rem 0.7rem;
+  margin-top: clamp(-0.85rem, -1.4vw, -0.38rem);
+  color: rgba(222, 214, 196, 0.62);
   font-family: var(--font-handwritten), var(--font-geist-mono), monospace;
-  font-size: 1.78rem;
+  font-size: 1.48rem;
   line-height: 1.1;
   text-align: center;
 }
@@ -318,8 +364,9 @@
 .relationship svg {
   --relationship-rotation: 0deg;
 
+  display: none;
   order: 2;
-  width: min(100%, 14.5rem);
+  width: min(100%, 8.4rem);
   height: auto;
   fill: none;
   stroke-linecap: round;
@@ -329,27 +376,32 @@
 }
 
 .arrowMain {
-  stroke: rgba(222, 214, 196, 0.74);
-  stroke-width: 4.1;
+  stroke: rgba(222, 214, 196, 0.34);
+  stroke-width: 2.8;
 }
 
 .arrowGhost {
-  stroke: rgba(222, 214, 196, 0.38);
-  stroke-width: 2;
+  stroke: rgba(222, 214, 196, 0.16);
+  stroke-width: 1.35;
   stroke-dasharray: 26 5 8 6;
 }
 
 .relationship p {
-  order: 1;
-  max-width: 16.5rem;
-  margin: 0 0 -0.45rem;
-  transform: rotate(-4deg);
+  max-width: none;
+  margin: 0;
+  transform: rotate(-1.4deg);
 }
 
 .relationship p + p {
-  order: 3;
-  margin: -0.45rem 0 0;
-  transform: rotate(4deg);
+  margin: 0;
+  transform: rotate(1.2deg);
+}
+
+.relationship p + p::before {
+  padding-right: 0.7rem;
+  color: var(--cyan);
+  content: "~";
+  opacity: 0.72;
 }
 
 .latestUpdate {
@@ -358,23 +410,13 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: clamp(0.85rem, 2.5vw, 1.6rem);
   align-items: start;
-  margin-top: clamp(1.65rem, 4.3vw, 2.85rem);
-  border: 1px solid rgba(146, 199, 163, 0.4);
-  border-radius: 0.9rem;
-  padding: clamp(1.18rem, 2.4vw, 1.65rem);
+  margin-top: clamp(1.35rem, 3.8vw, 2.35rem);
+  border-top: 1px solid rgba(222, 214, 196, 0.22);
+  border-bottom: 1px solid rgba(222, 214, 196, 0.18);
+  padding: clamp(1.18rem, 2.4vw, 1.55rem) 0;
   color: inherit;
-  background: rgba(14, 17, 13, 0.62);
+  background: transparent;
   text-decoration: none;
-}
-
-.latestUpdate::before {
-  position: absolute;
-  top: clamp(-1.55rem, -3vw, -1.15rem);
-  left: 0;
-  right: 0;
-  height: 1px;
-  content: "";
-  background: rgba(222, 214, 196, 0.24);
 }
 
 .updateSpark {
@@ -425,8 +467,8 @@
 }
 
 .latestUpdate:hover {
-  border-color: rgba(146, 199, 163, 0.62);
-  background: rgba(18, 23, 18, 0.72);
+  border-color: rgba(146, 199, 163, 0.48);
+  background: rgba(222, 214, 196, 0.025);
 }
 
 .destinationCard:hover {
@@ -476,11 +518,11 @@
   width: fit-content;
   margin: 0;
   color: var(--text);
-  font-family: var(--font-editorial), Georgia, serif;
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 .destinationCard:hover h2 {
@@ -551,15 +593,88 @@
   }
 }
 
+@media (min-width: 901px) {
+  .hero {
+    gap: clamp(0.95rem, 2.2vw, 1.55rem);
+  }
+
+  .quoteBlock {
+    grid-template-columns: minmax(5.8rem, 8rem) minmax(0, 1fr);
+    justify-self: start;
+    width: min(100%, 66rem);
+    max-width: none;
+    margin: 0;
+  }
+
+  .quoteBlock blockquote {
+    font-size: clamp(1.48rem, 2.35vw, 2.08rem);
+  }
+
+  .quoteBlock blockquote span {
+    left: -1.85rem;
+    font-size: 3.9rem;
+  }
+}
+
 @media (min-width: 901px) and (max-width: 1100px) {
+  .quoteBlock {
+    grid-template-columns: minmax(4.8rem, 6.25rem) minmax(0, 1fr);
+    width: min(100%, 52rem);
+  }
+
+  .quoteBlock blockquote {
+    font-size: clamp(1.38rem, 2.2vw, 1.75rem);
+  }
+
+  .quoteBlock blockquote span {
+    left: -1.55rem;
+    font-size: 3.35rem;
+  }
+
   .modeCard {
     padding-top: 3.85rem;
   }
 }
 
 @media (max-width: 900px) {
+  .tapeLabel {
+    top: 1rem;
+  }
+
   .workshopMap {
     grid-template-columns: 1fr;
+  }
+
+  .modeCard {
+    justify-self: center;
+    width: min(100%, 42rem);
+  }
+
+  .relationship {
+    order: 1;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quoteBlock {
+    grid-template-columns: minmax(4.4rem, 6rem) minmax(0, 1fr);
+    justify-self: start;
+    max-width: 40rem;
+    margin: 0;
+  }
+
+  .makerSketch {
+    max-width: 6rem;
+  }
+
+  .quoteBlock blockquote {
+    max-width: 35rem;
+    font-size: clamp(1.3rem, 3.6vw, 1.68rem);
+  }
+
+  .quoteBlock blockquote span {
+    left: -1.25rem;
+    font-size: 3rem;
   }
 
   .modeContent {
@@ -607,11 +722,16 @@
 
 @media (max-width: 720px) {
   .home {
-    padding-top: 2.15rem;
+    padding-top: 1.35rem;
+  }
+
+  .hero {
+    gap: 1rem;
   }
 
   .hero h1 {
-    font-size: clamp(3.15rem, 16vw, 5rem);
+    font-size: clamp(3rem, 14.5vw, 4.65rem);
+    line-height: 0.98;
   }
 
   .sparkDoodle {
@@ -621,27 +741,28 @@
   }
 
   .quoteBlock {
-    grid-template-columns: minmax(4.8rem, 0.34fr) minmax(0, 1fr);
-    gap: 0.65rem;
+    grid-template-columns: minmax(4rem, 0.26fr) minmax(0, 1fr);
+    gap: 0.58rem;
     align-items: start;
-    max-width: 24rem;
-    margin-top: 0.15rem;
+    width: 100%;
+    max-width: none;
+    margin-top: -0.1rem;
   }
 
   .makerSketch {
-    max-width: 6.8rem;
-    padding-top: 0.35rem;
+    max-width: 5.7rem;
+    padding-top: 0.22rem;
   }
 
   .quoteBlock blockquote span {
-    left: -1.45rem;
+    left: -1.2rem;
     top: -0.04rem;
-    font-size: 3.1rem;
+    font-size: 2.8rem;
   }
 
   .quoteBlock blockquote {
-    max-width: 17rem;
-    font-size: clamp(1.42rem, 7.3vw, 1.85rem);
+    max-width: none;
+    font-size: clamp(1.28rem, 6.35vw, 1.62rem);
     line-height: 1.02;
   }
 
@@ -650,22 +771,42 @@
   }
 
   .modeCard {
-    padding-top: 3.95rem;
+    padding-top: 3.35rem;
   }
 
   .modeContent {
     min-height: auto;
-    padding-block: 1.2rem;
+    padding-block: 1.45rem 1rem;
+  }
+
+  .modeContent h3 {
+    font-size: clamp(1.08rem, 5.1vw, 1.28rem);
+  }
+
+  .modeContent p {
+    font-size: 0.95rem;
+  }
+
+  .modeContent ul {
+    gap: 0.58rem;
+    margin-top: 0.95rem;
+    padding-top: 0.85rem;
+  }
+
+  .modeContent li {
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+    gap: 0.62rem;
+    font-size: 0.95rem;
   }
 
   .relationship {
-    gap: 0.18rem;
-    font-size: clamp(1.55rem, 7.2vw, 1.9rem);
+    gap: 0.14rem;
+    font-size: clamp(1.32rem, 6.1vw, 1.58rem);
   }
 
   .relationship p,
   .relationship p + p {
-    max-width: 19rem;
+    max-width: 18rem;
   }
 
   .latestUpdate {

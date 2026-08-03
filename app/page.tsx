@@ -70,9 +70,10 @@ export default async function Page() {
           </div>
           <blockquote>
             <span aria-hidden="true">“</span>
-            <p>I write, build, and test ideas in public.</p>
-            <p>Some stay small. Some go nowhere.</p>
-            <p>Either way, I learn as I go.</p>
+            <p>
+              Welcome to my workbench: notes on one side, lab work on the other, curiosity running
+              through both.
+            </p>
           </blockquote>
         </figure>
       </section>
