@@ -20,17 +20,17 @@ export default async function LabPage() {
   const [highlight, ...remainingEntries] = entries;
 
   return (
-    <div className="pageShell">
+    <div className="pageShell overviewPageShell">
       <PageIntro
-        eyebrow="LAB"
-        title="Experiments with honest boundaries."
-        description="Small experiments, prototypes, and tools—shared with clear boundaries around what works, what does not, and what I am still learning."
+        title="Lab"
+        description="Experiments with honest boundaries. Small experiments, prototypes, and tools—shared with clear boundaries around what works, what does not, and what I am still learning."
+        variant="overview"
       />
       {highlight ? (
         <section className={styles.section} aria-labelledby="lab-highlight">
-          <p id="lab-highlight" className="eyebrow">
-            Current project
-          </p>
+          <div className="sectionHeader">
+            <h2 id="lab-highlight">Current project</h2>
+          </div>
           <EditorialContentRow
             href={highlight.href}
             title={highlight.title}
@@ -54,8 +54,7 @@ export default async function LabPage() {
       {remainingEntries.length > 0 ? (
         <section className={styles.section} aria-labelledby="lab-collection">
           <div className="sectionHeader">
-            <p className="eyebrow">More Lab work</p>
-            <h2 id="lab-collection">Published Lab projects</h2>
+            <h2 id="lab-collection">More Lab work</h2>
           </div>
           <LabList entries={remainingEntries} />
         </section>

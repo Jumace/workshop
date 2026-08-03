@@ -1,31 +1,3 @@
 .section + .section {
   margin-top: clamp(1.35rem, 3vw, 2rem);
 }
-
-.highlightLabel {
-  display: inline-flex;
-  gap: 0.48rem;
-  align-items: center;
-}
-
-.highlightLabel::before {
-  width: 0.16rem;
-  height: 1.1em;
-  content: "";
-  background: var(--cyan);
-}
-
-.collectionHeader {
-  margin-bottom: clamp(0.55rem, 1.5vw, 0.85rem);
-}
-
-.collectionHeader h2 {
-  margin: 0;
-  color: var(--cyan);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}

@@ -7,15 +7,19 @@ export function PageIntro({
   title,
   description,
   meta,
+  variant = "default",
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   meta?: ReactNode;
+  variant?: "default" | "overview";
 }) {
   return (
-    <header className={styles.intro}>
-      <p className="eyebrow">{eyebrow}</p>
+    <header
+      className={variant === "overview" ? `${styles.intro} ${styles.overview}` : styles.intro}
+    >
+      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h1>{title}</h1>
       {description ? <p className={styles.description}>{description}</p> : null}
       {meta ? <div className={styles.meta}>{meta}</div> : null}
