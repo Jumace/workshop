@@ -29,6 +29,10 @@
   transition: opacity var(--duration-fast) var(--ease-standard);
 }
 
+.notebook::before {
+  opacity: 0.22;
+}
+
 .lab::before {
   opacity: 0.34;
 }
