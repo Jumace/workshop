@@ -1,49 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { SparkIcon } from "@/app/components/spark-icon";
 import { getPublishedLabEntries, getPublishedNotebookEntries } from "@/app/lib/content";
 import styles from "./page.module.css";
-
-function SparkIcon({ className }: { className: string }) {
-  return (
-    <svg className={className} viewBox="0 0 120 120" fill="none" aria-hidden="true">
-      <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M58 58 C57 43 56 27 53 10" strokeWidth="3.6" />
-        <path d="M60 58 C67 46 76 31 88 18" strokeWidth="3.4" />
-        <path d="M62 60 C76 58 90 55 104 51" strokeWidth="3.5" />
-        <path d="M61 62 C67 76 71 90 74 108" strokeWidth="3.7" />
-        <path d="M58 62 C48 75 38 87 26 100" strokeWidth="3.5" />
-        <path d="M57 60 C44 61 33 62 20 63" strokeWidth="2.8" />
-        <path d="M57 58 C46 50 36 42 25 32" strokeWidth="2.9" />
-        <path d="M61 61 C73 67 84 72 95 79" strokeWidth="2.7" />
-        <path d="M59 57 C62 45 65 35 69 24" strokeWidth="2.4" />
-        <path d="M61 58 C71 49 80 41 91 34" strokeWidth="2.3" />
-        <path d="M62 59 C72 60 82 61 92 64" strokeWidth="2.3" />
-        <path d="M61 62 C68 71 75 80 81 89" strokeWidth="2.2" />
-        <path d="M59 62 C56 72 53 82 49 92" strokeWidth="2.2" />
-        <path d="M57 61 C49 69 41 76 32 84" strokeWidth="2.2" />
-        <path d="M57 59 C47 56 39 53 31 48" strokeWidth="2.1" />
-        <path d="M58 57 C51 48 45 39 40 28" strokeWidth="2.1" />
-        <path d="M59 58 C52 44 47 33 43 20" strokeWidth="1.5" opacity=".72" />
-        <path d="M60 60 C75 71 87 82 96 94" strokeWidth="1.4" opacity=".72" />
-        <path d="M58 61 C45 73 34 84 20 91" strokeWidth="1.4" opacity=".68" />
-        <path d="M62 58 C76 51 88 44 99 39" strokeWidth="1.3" opacity=".65" />
-        <path d="M53.8 11.6 C56.3 28 57.2 43.5 58.5 57.6" strokeWidth="1" opacity=".45" />
-        <path d="M103 50.5 C90.2 55 76.8 58 62.2 60" strokeWidth="1" opacity=".4" />
-        <path d="M73 107 C70.5 89.5 66.5 76 60.7 62.4" strokeWidth="1" opacity=".42" />
-        <path d="M26.8 99 C37.6 88.2 47.7 75.9 57.6 62.5" strokeWidth="1" opacity=".42" />
-        <path
-          d="M53 60 C56 55 63 55 67 58 C66 64 60 67 55 65 C52 64 51 62 53 60Z"
-          strokeWidth="2.2"
-        />
-        <path d="M54 56 C58 59 62 63 67 64" strokeWidth="1.8" />
-        <path d="M54 64 C58 62 62 59 66 56" strokeWidth="1.8" />
-        <path d="M56 54 C58 59 60 63 62 67" strokeWidth="1.4" />
-        <path d="M52.5 60 C57 60.5 62 60.5 67.5 60" strokeWidth="1.5" />
-      </g>
-    </svg>
-  );
-}
 
 function SparkUnderline() {
   return (
@@ -179,10 +139,10 @@ export default async function Page() {
           href={latestUpdate.href}
           aria-labelledby="latest-update-heading"
         >
-          <SparkIcon className={styles.updateSpark} />
+          <SparkIcon className={styles.updateSpark} variant="compact" />
           <div className={styles.updateCopy}>
             <p className={styles.updateMeta}>
-              <span id="latest-update-heading">Latest update</span>
+              <span id="latest-update-heading">Latest from the workbench</span>
               <span aria-hidden="true">·</span>
               <time dateTime={latestUpdate.date}>
                 {formatDate(latestUpdate.date).toUpperCase()}

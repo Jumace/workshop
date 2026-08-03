@@ -74,7 +74,6 @@
 
   display: inline-block;
   margin-left: 0.22em;
-  transform: rotate(8deg);
   vertical-align: 0.08em;
 }
 
@@ -616,7 +615,7 @@
   }
 
   .sparkDoodle {
-    --size: 0.5em;
+    --size: clamp(2.35rem, 0.58em, 2.9rem);
 
     margin-left: 0.16em;
   }
