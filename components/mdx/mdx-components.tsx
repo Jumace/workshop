@@ -1,8 +1,21 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { AnchorHTMLAttributes, ReactNode } from "react";
 
 import { getContentReference, type ContentKind } from "@/lib/content-metadata";
 import styles from "./mdx-components.module.css";
+
+const externalLinkProps = {
+  target: "_blank",
+  rel: "noopener noreferrer",
+} as const;
+
+function isExternalHref(href: string | undefined) {
+  return href?.startsWith("http://") || href?.startsWith("https://");
+}
+
+export function MdxAnchor({ href, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) {
+  return <a {...props} href={href} {...(isExternalHref(href) ? externalLinkProps : {})} />;
+}
 
 export function Callout({
   title,
@@ -48,7 +61,7 @@ export function LinkCard({
 
   if (isExternal) {
     return (
-      <a className={styles.linkCard} href={href}>
+      <a className={styles.linkCard} href={href} {...externalLinkProps}>
         {content}
       </a>
     );

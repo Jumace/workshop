@@ -1,6 +1,12 @@
 import type { MDXComponents } from "mdx/types";
 
-import { Callout, ContentLinkCard, DemoFrame, LinkCard } from "@/components/mdx/mdx-components";
+import {
+  Callout,
+  ContentLinkCard,
+  DemoFrame,
+  LinkCard,
+  MdxAnchor,
+} from "@/components/mdx/mdx-components";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -8,6 +14,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ContentLinkCard,
     DemoFrame,
     LinkCard,
+    a: MdxAnchor,
     ...components,
   };
 }

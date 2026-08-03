@@ -11,8 +11,12 @@ export function SiteFooter() {
         <p>Following what the spark started.</p>
         <SparkIcon className={styles.spark} />
         <div className={styles.links}>
-          <a href={siteConfig.author.github}>GitHub</a>
-          <a href={siteConfig.author.linkedin}>LinkedIn</a>
+          <a href={siteConfig.author.github} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          <a href={siteConfig.author.linkedin} target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
           <Link href="/privacy">Privacy</Link>
           <Link href="/rss.xml">RSS</Link>
         </div>
