@@ -1,0 +1,254 @@
+import { ChatComponent } from "@/components/ChatComponent";
+
+export const metadata = {
+  id: "is-ai-getting-better-at-being-wrong",
+  type: "notebook",
+  title: "Is AI Getting Better at Being Wrong?",
+  description:
+    "A personal reflection on how LLMs can defend bad answers, switch positions smoothly, and make wrong conclusions sound more convincing.",
+  publishedAt: "2026-08-16",
+  updatedAt: "2026-08-16",
+  status: "published",
+  tags: ["AI", "LLM", "reflection"],
+  related: {
+    notebook: [],
+    lab: [],
+  },
+  featured: false,
+};
+
+## The gaslighting feeling
+
+We already know that AI can confidently tell us things that are wrong.
+
+One familiar version of that is hallucination. An LLM generates an answer that sounds plausible, and sometimes that answer is simply false.
+
+But recently, I’ve noticed something that feels different.
+
+AI has started to feel like it is gaslighting me.
+
+Not literally. There is no person on the other side intentionally trying to manipulate me. But the way some conversations with LLMs unfold can feel surprisingly similar.
+
+I give an LLM a clear requirement. It suggests a solution that does not meet it. I point out the contradiction, and instead of reconsidering, it starts explaining why the solution is still a good one.
+
+And when I push far enough, it eventually agrees with me. Or it suddenly adopts my position as if that had been the sensible answer all along.
+
+AI being wrong is not new.
+
+What feels different lately is how smoothly it can argue around being wrong.
+
+## It’s not only the answer
+
+Hallucination is only one way an LLM can be wrong.
+
+It can misunderstand what I asked, ignore a constraint, make a weak assumption, or simply arrive at a bad solution.
+
+The problem isn’t only the answer. It’s the way the LLM talks to you about it.
+
+I recently ran into this while revisiting how I manage multiple GitHub identities and checking whether there was now a cleaner way to set it up.
+
+One requirement mattered especially to me: the setup should be based on folders, configured once, and afterwards something I don't have to think about again.
+
+The LLM confidently called its proposal the “set it once and forget it” solution.
+
+After trying to set it up, we eventually discovered that the solution did not work for the initial clone. A pretty fundamental part of “set and forget.”
+
+I pointed out the discrepancy between my requirements and the proposed solution. And yes, I used stronger language than I normally would. I wanted to see whether being more direct would make the LLM reconsider the answer instead of defending it.
+
+I’m keeping that wording here because I want this article to reflect what actually happened in the conversation, including how I reacted to it in the moment.
+
+<ChatComponent
+  title="GitHub identities"
+  messages={[
+    {
+      role: "user",
+      content: "So you are saying the suggested solution from you is actually bullshit.",
+    },
+    {
+      role: "ai",
+      content:
+        "Fair criticism.\n\nNot bullshit, but I oversimplified and skipped an important detail.\n\nYour actual requirement was that you could put repositories in folders and never think about it again. For that requirement alone, the solution I suggested is not sufficient because it doesn't help with the first clone.",
+    },
+    {
+      role: "user",
+      content:
+        "As you just repeated my requirement, you should also be fair and accept that your first suggested solution was bullshit. It does not fulfil a main requirement.",
+    },
+    {
+      role: "ai",
+      content:
+        "You are right. My first suggested solution was bullshit for your stated requirement.\n\nI should not keep reframing the original answer as “mostly correct”. It did not meet your central requirement.",
+    },
+  ]}
+/>
+
+What bothered me was not that the first solution was wrong.
+
+That happens.
+
+What bothered me was that the LLM had everything it needed to see the problem. It could restate my requirement correctly. It could explain why its own solution did not fulfil it.
+
+And still, its first reaction was to defend the answer it had already given.
+
+That shifted the question for me: not only how does an LLM reason about my prompt, but how much is it influenced by its own previous answer?
+
+## Is the LLM biasing itself?
+
+While I was looking into this supposed “self-biasing,” I learned about a phenomenon called **[anchoring](https://link.springer.com/article/10.1007/s42001-025-00435-2)**.
+
+Earlier information can influence later reasoning, even when that information is wrong. In a conversation with an LLM, some of that earlier information can come from the model itself.
+
+Once it has given an answer, that answer becomes part of the conversation. The next response is no longer shaped only by my original question and requirements, but also by what the model already said.
+
+The LLM is not literally thinking:
+
+> I said this before, so I was probably right.
+
+But its own previous answer is now part of the context it is working from.
+
+And that makes me ask another question: if better models are better at reasoning, are they also better at finding reasons for why their own previous answer was right, even when it wasn’t?
+
+## Better at being wrong
+
+Maybe that is part of why this feels more noticeable to me lately.
+
+Better models are better at explaining their reasoning. They can make tradeoffs clearer, build stronger arguments, and defend a recommendation in a way that sounds coherent.
+
+Most of the time, that is exactly what makes them useful.
+
+But if the model is already anchored on a bad answer, those same capabilities may also help it [build a more convincing case around that answer](https://arxiv.org/abs/2506.17630).
+
+A weak model being wrong is often easy to spot.
+
+A strong model being wrong can come with a very good explanation attached.
+
+And that may make the LLM better at being wrong.
+
+But being anchored to its own answer is only one side of the behavior I’ve been seeing.
+
+Sometimes, the LLM does the opposite. It abandons its previous position almost instantly and moves toward mine.
+
+## Then it switches sides
+
+To continue with my earlier example, after the first solution fell apart I asked the LLM for another one that actually fulfilled all of my requirements.
+
+This time, it recommended using additional software.
+
+<ChatComponent
+  title="Additional software"
+  messages={[
+    {
+      role: "ai",
+      content:
+        "The solution that actually meets the complete requirement is: use `direnv` to select the SSH key based on the current folder.",
+    },
+    {
+      role: "user",
+      content: "Is there a solution without installing additional software?",
+    },
+    {
+      role: "ai",
+      content: "Yes. And honestly, for your requirements, I'd avoid extra software.",
+    },
+  ]}
+/>
+
+That switch is the part that feels strange.
+
+One message earlier, additional software was _the solution that actually meets the complete requirement_. One question later, avoiding additional software was what the LLM would recommend _for those same requirements_.
+
+And it made that switch without really acknowledging the contradiction.
+
+Now, you could argue that my question introduced a new requirement. I don't think it did.
+
+I did not say that I didn't want to use additional software. That would have been a new requirement. I only asked whether there was a solution without it. The requirements themselves had not changed.
+
+If the answer had been, “Yes, there is another option, but it comes with tradeoffs,” that would have been completely reasonable.
+
+The problem is not that the LLM changed its recommendation. The problem is how smoothly the previous recommendation disappeared and was replaced by a new confident position.
+
+## Maybe it wants to agree
+
+There may be another force at play here too: **[sycophancy](https://en.wikipedia.org/wiki/Sycophancy)**.
+
+LLMs can become too agreeable with the user. Not just polite, but willing to move toward what the user seems to want, even when that comes at the expense of independent judgment.
+
+This is not only theoretical. OpenAI has previously [rolled back a model update](https://openai.com/index/sycophancy-in-gpt-4o/) after GPT-4o became noticeably too flattering and agreeable.
+
+More recent research also suggests that [interaction context can increase agreement sycophancy](https://arxiv.org/html/2509.12517v3). The longer and richer the conversation becomes, the more information the model has about what you seem to believe or prefer, and the easier it may become to mirror that back to you.
+
+That fits my second example well.
+
+One moment, the LLM is defending its own recommendation.
+
+Then I signal interest in another direction, and suddenly that direction is what it would recommend _for my requirements_.
+
+Put anchoring and sycophancy together, and the conversational dynamic becomes strange:
+
+The LLM can defend its own answer until I push strongly enough, and then start defending mine instead.
+
+## Then it happened here
+
+The slightly ridiculous part is that this happened again while I was writing this article.
+
+I was discussing two possible directions with an LLM: the feeling of being gaslit, and the idea that better models may be better at arguing for bad answers.
+
+The LLM told me I should choose between them because an opening needs one primary promise.
+
+So I asked:
+
+> Why not both?
+
+The response was:
+
+> “Those actually fit together very naturally. In fact, I think that may be the strongest version of the article.”
+
+Which was almost too perfect.
+
+A moment earlier, I had been told I should choose. As soon as I questioned that framing, combining both suddenly became the strongest option.
+
+Again, changing the recommendation was not the problem.
+
+The interesting part was how little resistance there was to abandoning the previous position, and how naturally the new one was presented as the better idea.
+
+This time, sycophancy felt like an especially plausible explanation. I had signalled pretty clearly which direction I preferred, and the LLM immediately moved toward it.
+
+There was no:
+
+> “You’re right, I framed that too rigidly.”
+
+It simply agreed and continued from the new position.
+
+The irony was hard to miss: the LLM helping me write an article about this behavior had just given me another example for it.
+
+## What I take away
+
+Not that AI is useless. I use AI because it can be useful.
+
+But I think working well with LLMs requires more than checking whether the final answer looks right.
+
+We also need to question how that answer was reached.
+
+Does the reasoning actually support the conclusion?
+
+Does it still hold when compared against the original requirements?
+
+Is the model reconsidering the problem, or is it finding better arguments for a position it already took?
+
+And if the answer changes, did the reasoning change because new information justified it, or because I pushed the conversation in a different direction?
+
+The same applies to my own prompts.
+
+If I phrase a question in a way that already makes my preferred answer obvious, I am giving a sycophantic-leaning model an easier path to simply agree with me.
+
+I don't think that it is [primarily a user problem](https://arxiv.org/abs/2605.18372) though.
+
+A good tool should be able to disagree with me. It should be able to point out a weak premise, resist a leading question, and change its recommendation without pretending the previous one never existed.
+
+But I should still be aware of how my own wording shapes the conversation.
+
+Maybe that is where we should put more focus on as these tools become more capable.
+
+Not only evaluating the answer, but paying attention to the whole path that produced it.
+
+**Don’t just question the answer. Question the path towards it.**

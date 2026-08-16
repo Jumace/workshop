@@ -12,6 +12,13 @@ export const contentReferences = [
   },
   {
     type: "notebook",
+    slug: "is-ai-getting-better-at-being-wrong",
+    href: "/notebook/is-ai-getting-better-at-being-wrong",
+    sourcePath: "content/notebook/is-ai-getting-better-at-being-wrong/index.mdx",
+    metadata: {"id":"is-ai-getting-better-at-being-wrong","type":"notebook","title":"Is AI Getting Better at Being Wrong?","description":"A personal reflection on how LLMs can defend bad answers, switch positions smoothly, and make wrong conclusions sound more convincing.","publishedAt":"2026-08-16","updatedAt":"2026-08-16","status":"published","tags":["AI","LLM","reflection"],"related":{"notebook":[],"lab":[]},"featured":false},
+  },
+  {
+    type: "notebook",
     slug: "local-llm-journey",
     href: "/notebook/local-llm-journey",
     sourcePath: "content/notebook/local-llm-journey/index.mdx",
