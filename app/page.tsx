@@ -66,7 +66,7 @@ export default async function Page() {
         </div>
         <figure className={styles.quoteBlock}>
           <div className={styles.makerSketch} aria-hidden="true">
-            <Image src="/avatar.png" alt="" width={1024} height={1024} priority />
+            <Image src="/avatar-256.png" alt="" width={256} height={256} priority />
           </div>
           <blockquote>
             <span aria-hidden="true">“</span>
