@@ -10,7 +10,6 @@ import notebook4Component, { metadata as notebook4Metadata } from "@/content/not
 import lab0Component, { metadata as lab0Metadata } from "@/content/lab/content-architecture/index.mdx";
 import lab1Component, { metadata as lab1Metadata } from "@/content/lab/sharing-discovery/index.mdx";
 import lab2Component, { metadata as lab2Metadata } from "@/content/lab/sparktrail-mvp-plan/index.mdx";
-import lab3Component, { metadata as lab3Metadata } from "@/content/lab/vercel-flags/index.mdx";
 
 export const notebookContent = [
   {
@@ -86,15 +85,6 @@ export const labContent = [
     module: {
       default: lab2Component,
       metadata: lab2Metadata as LabMetadata,
-    },
-  },
-  {
-    slug: "vercel-flags",
-    sourcePath: "content/lab/vercel-flags/index.mdx",
-    source: "export const metadata = {\n  id: \"vercel-flags\",\n  type: \"lab\",\n  title: \"Vercel Flags with a local fallback\",\n  description:\n    \"A feature-flag Lab that runs locally while documenting how to connect real Vercel Flags.\",\n  publishedAt: \"2026-07-18\",\n  updatedAt: \"2026-07-18\",\n  status: \"draft\",\n  tags: [\"flags\", \"vercel\", \"experiments\"],\n  related: {\n    notebook: [],\n    lab: [],\n  },\n  featured: false,\n  project: {\n    stage: \"exploring\",\n    startedAt: \"2026-07-18\",\n    lastActivityAt: \"2026-07-18\",\n  },\n};\n\nThis experiment uses the Flags SDK shape without making Vercel credentials mandatory for local development.\n\nIf the project is linked to Vercel and local environment values are pulled, the same flag can be managed through the Vercel dashboard. Without that setup, the demo falls back to `LAB_FLAGS_FALLBACK` or `cyan`.\n\n<LinkCard\n  href=\"https://vercel.com/docs/flags/vercel-flags/sdks/flags-sdk\"\n  title=\"Flags SDK docs\"\n  description=\"The Vercel Flags SDK integration used as the target workflow for this Lab.\"\n/>\n",
-    module: {
-      default: lab3Component,
-      metadata: lab3Metadata as LabMetadata,
     },
   }
 ];

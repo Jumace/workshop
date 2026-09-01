@@ -58,12 +58,5 @@ export const contentReferences = [
     href: "/lab/sparktrail-mvp-plan",
     sourcePath: "content/lab/sparktrail-mvp-plan/index.mdx",
     metadata: {"id":"sparktrail-mvp-plan","type":"lab","title":"Planning the voice-to-note MVP","description":"The first planning boundaries for a local-first tool that turns messy spoken thoughts into usable notes.","publishedAt":"2026-07-29","updatedAt":"2026-07-29","status":"published","tags":["local-ai","notes","voice","workflow"],"series":{"slug":"building-the-workshop","title":"Building the workshop","order":5},"related":{"notebook":["the-notes-i-never-take"],"lab":[]},"featured":false,"project":{"stage":"exploring","startedAt":"2026-07-29","lastActivityAt":"2026-07-29"}},
-  },
-  {
-    type: "lab",
-    slug: "vercel-flags",
-    href: "/lab/vercel-flags",
-    sourcePath: "content/lab/vercel-flags/index.mdx",
-    metadata: {"id":"vercel-flags","type":"lab","title":"Vercel Flags with a local fallback","description":"A feature-flag Lab that runs locally while documenting how to connect real Vercel Flags.","publishedAt":"2026-07-18","updatedAt":"2026-07-18","status":"draft","tags":["flags","vercel","experiments"],"related":{"notebook":[],"lab":[]},"featured":false,"project":{"stage":"exploring","startedAt":"2026-07-18","lastActivityAt":"2026-07-18"}},
   }
 ] satisfies ContentReference[];
