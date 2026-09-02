@@ -1,0 +1,126 @@
+import { AiDisclosurePaths } from "@/components/lab-demos/ai-disclosure-paths";
+
+export const metadata = {
+  id: "developing-ai-disclosure-builder",
+  type: "lab",
+  title: "Starting an AI disclosure tool",
+  description:
+    "The questionnaire, CLI paths, artifact design, and boundaries behind an AI disclosure tool.",
+  publishedAt: "2026-09-02",
+  updatedAt: "2026-09-02",
+  status: "published",
+  tags: ["ai", "cli", "open-source", "disclosure", "process"],
+  related: {
+    notebook: ["missing-context-around-ai-assisted-work"],
+    lab: [],
+  },
+  featured: false,
+  project: {
+    stage: "stable",
+    startedAt: "2026-08-02",
+    lastActivityAt: "2026-08-02",
+  },
+};
+
+## Why disclose AI use?
+
+When AI helps shape a software project, the finished repository does not always show how that happened.
+
+The maintainer may want to say whether AI has a role, how they use it, and what role they want it to have in contributions.
+
+That is the problem behind `ai-disclosure`, a small Node CLI for helping maintainers write this context into their projects.
+
+The hard part was deciding which AI-related context was important to present and where the boundaries of that information should be drawn.
+
+## Disclosure is process context
+
+An AI disclosure gives maintainers a way to state their project's position openly. That can include how they use AI themselves and what they expect from contributors.
+
+As I wrote in the [Notebook article about the missing context around AI-assisted work](/notebook/ai-disclosure-as-project-context), AI is a different kind of tool from most of the others in a developer's toolbelt. It can influence planning, implementation, review, and explanation, which makes its role worth making visible.
+
+## The questionnaire
+
+The questionnaire turns that context into five questions:
+
+- Does AI have a role in this project?
+- How strongly did it shape the work?
+- Where was human judgment involved?
+- What boundaries does the project have?
+- What is unknown, not covered, or not being claimed?
+
+Together, these questions describe the role AI played without trying to measure its contribution.
+
+Simply writing `AI used` is too sparse to help a reader.
+
+At the other extreme, recording tools, models, prompts, files, and line-level provenance becomes a forensic report.
+
+AI is already part of how many people work. The practical question is how to live with that openly, without turning disclosure into another recurring burden.
+
+The useful middle is a set of high-level sections that can describe the project's actual process without requiring a detailed record of every interaction.
+
+The current disclosure names broad areas such as implementation, architecture, testing, documentation, research, and review. The maintainer can describe those areas in their own terms, without turning them into a complete taxonomy of AI assistance.
+
+Those boundaries can also be specific. A maintainer might state that only approved models should be used, including models they consider ethically trained. The tool does not verify that judgment; it makes the project's expectation visible so contributors and AI tools can follow it.
+
+The status question comes first to keep the rest of the questionnaire relevant.
+
+A project can state that AI is not part of its work, including its contributions, or describe how AI is used. It can also leave the status unknown instead of inventing precision.
+
+The detailed questions also offer three uncertainty shortcuts:
+
+- `unknown`
+- `not applicable`
+- `not making a claim`
+
+These are not escape hatches from the design. They are part of it. They let maintainers be clear about what they want to share and what they do not want to specify.
+
+## The artifact
+
+The output is a root-level `AI_DISCLOSURE.md` file. It is just a readable Markdown file, without a separate configuration file or data format.
+
+There are two ways to create that file:
+
+<AiDisclosurePaths />
+
+Its sections depend on the project's selected AI status:
+
+- `Overview`
+- `Current AI status`
+- Optional `Last reviewed`
+- Detail sections only when the selected status makes them relevant
+
+This keeps the `No AI` result short. It also prevents every project from receiving a template full of empty lifecycle sections.
+
+The file is readable without installing the CLI.
+
+The [AI Disclosure used by this Workbench](https://github.com/Jumace/workshop/blob/main/AI_DISCLOSURE.md) is an example of the resulting artifact. It describes broad areas of AI assistance, human review, project boundaries, and what it intentionally does not claim.
+
+## Two paths, one boundary
+
+The base CLI deliberately does not scan the repository and does not require AI. It asks the maintainer what they want to share.
+
+A separate, optional agent skill is available for maintainers who want repository-informed assistance. In that path, repository scanning is an explicit choice. The skill can collect relevant evidence, but it does not turn that evidence into automatic claims.
+
+In either path, the maintainer is in charge. They review the information, decide what matters, and decide what to include. The tool can assist with the work, but it does not take over authorship or make that decision for them.
+
+The two paths are different ways to create the same file. In both cases, the maintainer reviews and agrees to its contents.
+
+## A question the tool raised
+
+Separating the base CLI from the optional AI-assisted skill raised a larger question for me. AI is likely to remain part of software development, and it can lower the barrier for people who are newer to software to contribute to open-source projects.
+
+That possibility is valuable, but it can also create new problems for maintainers. The question is not only whether a tool uses AI. It is how AI is used, why it is used, and how a project wants contributors and AI assistants to use it.
+
+Some projects may welcome AI-assisted contributions under specific conditions. Others may allow only approved models, or may not want AI-assisted contributions at all. Making those expectations visible gives people a clearer way to work with the project.
+
+How should developer tools account for how and why people want to use AI, including when they do not want to use it at all?
+
+I do not have an answer to the larger question yet. This project only made it visible to me.
+
+## A small promise
+
+The goal is straightforward: make AI use visible without asking maintainers to create a detailed record or telling readers what to think.
+
+The result is a short questionnaire and a plain Markdown file. They give maintainers a simple way to be open about AI's role in a project, while leaving the content of that disclosure in their hands.
+
+The source code and development history live in the [`ai-disclosure-builder` repository](https://github.com/Jumace/ai-disclosure-builder), and the primary source for this entry is the [development log](https://github.com/Jumace/ai-disclosure-builder/blob/main/docs/development-log.md).

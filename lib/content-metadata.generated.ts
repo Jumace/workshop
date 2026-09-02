@@ -47,6 +47,13 @@ export const contentReferences = [
   },
   {
     type: "lab",
+    slug: "developing-ai-disclosure-builder",
+    href: "/lab/developing-ai-disclosure-builder",
+    sourcePath: "content/lab/developing-ai-disclosure-builder/index.mdx",
+    metadata: {"id":"developing-ai-disclosure-builder","type":"lab","title":"Starting an AI disclosure tool","description":"The questionnaire, CLI paths, artifact design, and boundaries behind an AI disclosure tool.","publishedAt":"2026-09-02","updatedAt":"2026-09-02","status":"published","tags":["ai","cli","open-source","disclosure","process"],"related":{"notebook":["missing-context-around-ai-assisted-work"],"lab":[]},"featured":false,"project":{"stage":"stable","startedAt":"2026-08-02","lastActivityAt":"2026-08-02"}},
+  },
+  {
+    type: "lab",
     slug: "sharing-discovery",
     href: "/lab/sharing-discovery",
     sourcePath: "content/lab/sharing-discovery/index.mdx",
