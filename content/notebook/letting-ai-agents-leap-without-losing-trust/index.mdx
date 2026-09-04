@@ -1,0 +1,66 @@
+export const metadata = {
+  id: "letting-ai-agents-leap-without-losing-trust",
+  type: "notebook",
+  title: "Letting agents leap without losing trust",
+  description:
+    "A reflection on how AI agents can treat one-time permissions as ongoing, and on defining unified no-go areas across tools to regain trust without putting them in a cage.",
+  publishedAt: "2026-09-05",
+  updatedAt: "2026-09-05",
+  status: "published",
+  tags: ["AI", "workflow", "trust"],
+  related: {
+    notebook: [],
+    lab: [],
+  },
+  featured: false,
+};
+
+## Trust given, trust lost
+
+I am currently more cautious about giving AI coding agents larger tasks, not because I want to micromanage them, but because I have learned that what an agent thinks my request includes can be different from what I intended. This is especially noticeable when I am working in an existing codebase where changes are connected to decisions, history, and workflows I do not want to disrupt. I want to give an agent room to work, but I also want to know which actions it is allowed to take along the way.
+
+I am not looking for a way to put an AI agent in a cage. Sandboxes already exist, and they solve an important problem by limiting what an agent can physically access. The problem I am interested in is different: how to preserve the agent's freedom to work while preventing it from crossing selected boundaries that I did not intend to give it permission to cross, or allowing it to cross them only after it has asked me.
+
+## When done means pushed
+
+In most of my projects, I include an instruction in the prompt that the agent should not create commits without my approval. I have seen this more than once: from my perspective, I gave the agent permission for one specific moment, but it treated that permission as ongoing. For example, I once explicitly allowed it to create a commit. Later, when I said that the current step was done, it created another commit and pushed it without asking me.
+
+Nothing serious happened, but the incident showed me how easily the same mistake could have affected a more sensitive system.
+
+I can understand why the agent made that decision. It was trying to infer my intent and complete the task. When I say, “This is good enough,” I may only mean that the current step is in a good state and that we can move on. There may still be more work before I want to commit or push. The agent can interpret the same words as approval to finish the whole workflow, even though I have not made that decision.
+
+That gap becomes more concerning as I connect more systems to an agent. GitHub is one example, but a connected production CMS or AWS account creates other paths for unintended changes. Even a change limited to staging could affect other people's work and productivity. The individual action might still be small, but the surrounding system makes its consequences larger.
+
+This is why I am more cautious now. It is not because I want every command explained or approved. It is because I currently do not feel confident that a broader instruction will stop at the boundary I have in mind. I want to be able to trust the agent with more of the task without also trusting it to guess correctly when publication, deployment, or another consequential action should happen.
+
+## What the incident showed me
+
+The agent understood the larger goal, but that did not mean it understood which parts of the workflow I had authorized. An approval for one action was treated as permission to repeat that action later. Saying that a current step was good enough was treated as approval to finish everything around it.
+
+That is the trust problem I want to explore. I may trust an agent's ability to create a commit, push a branch, or deploy without a technical mistake. I still want to control when those actions happen.
+
+## A partial boundary
+
+The idea is not to put the agent into a cage, like a sandbox would do. It is to keep most of the working environment open while limiting a few consequential paths.
+
+I want the agent to keep most of its freedom to inspect a project, edit files, run tests, and explore solutions. At the same time, selected zones or routes should be unavailable, or should require my approval before the agent enters them. Publishing, changing a connected service, deleting shared data, or touching production should not happen simply because the agent decided that the task was finished.
+
+This would not provide perfect enforcement. I know an LLM may find another route to perform an action. The practical goal is to close the most obvious and commonly used paths. For the kinds of LLMs I use, that may be enough to prevent most unwanted actions without turning every ordinary command into a permission request.
+
+## Across different tools
+
+I want this to work above any particular agent harness. I switch between tools, and I expect to keep trying different ones as better or simply different options become available. The interface and permission settings may change, but the trust problem stays the same.
+
+Ideally, the safety net would remain available without a large amount of configuration for each tool. I do not want to solve the problem once for one harness and lose that protection when my workflow changes. The boundary should follow the work rather than being tied too closely to the interface I happen to be using.
+
+## The trust I want to recover
+
+I want to be able to define no-go areas for the agent. These would not be perfect walls, but places where it is at least blocked from going by default instead of relying only on a prompt or the surrounding context. I want to reduce the chance that the agent will stumble into one of those areas simply because it interpreted my request differently than I intended.
+
+Regaining trust does not mean removing the agent's initiative or supervising every step. It means giving that initiative somewhere safe to operate. The agent should have room to work, while the areas that matter most to me are clearly marked and harder to enter by accident.
+
+For now, the question is deliberately open:
+
+> How can I give an AI agent useful freedom while keeping it from stumbling into the no-go areas I have defined?
+
+I want to understand that question before committing to a particular tool or architecture. The next step is not to build a cage. It is to find out how I can define a unified set of no-go areas that works across different tools.

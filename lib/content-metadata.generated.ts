@@ -19,6 +19,13 @@ export const contentReferences = [
   },
   {
     type: "notebook",
+    slug: "letting-ai-agents-leap-without-losing-trust",
+    href: "/notebook/letting-ai-agents-leap-without-losing-trust",
+    sourcePath: "content/notebook/letting-ai-agents-leap-without-losing-trust/index.mdx",
+    metadata: {"id":"letting-ai-agents-leap-without-losing-trust","type":"notebook","title":"Letting agents leap without losing trust","description":"Why giving AI agents more freedom can feel like losing control, and what might help me regain trust in them.","publishedAt":"2026-09-04","updatedAt":"2026-09-04","status":"published","tags":["AI","workflow","trust"],"related":{"notebook":[],"lab":[]},"featured":false},
+  },
+  {
+    type: "notebook",
     slug: "local-llm-journey",
     href: "/notebook/local-llm-journey",
     sourcePath: "content/notebook/local-llm-journey/index.mdx",
