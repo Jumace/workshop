@@ -82,10 +82,16 @@ export default async function Page() {
         <h2 id="workshop-map-heading" className={styles.visuallyHidden}>
           How Notebook and Lab relate
         </h2>
-        <article className={styles.modeCard}>
-          <span className={styles.tapeLabel}>Notebook</span>
+        <Link
+          className={styles.modeCard}
+          href="/notebook"
+          aria-labelledby="notebook-mode-label notebook-mode-heading"
+        >
+          <span className={styles.tapeLabel} id="notebook-mode-label">
+            Notebook
+          </span>
           <div className={styles.modeContent}>
-            <h3>Thinking out loud.</h3>
+            <h3 id="notebook-mode-heading">Thinking out loud.</h3>
             <p>Notes, reflections, half-formed ideas, patterns, and questions.</p>
             <ul>
               <li>Capture what catches my attention</li>
@@ -93,7 +99,7 @@ export default async function Page() {
               <li>Keep ideas that may never become projects</li>
             </ul>
           </div>
-        </article>
+        </Link>
 
         <div className={styles.relationship} aria-label="Notebook and Lab can feed each other">
           <svg viewBox="0 0 260 310" role="img" aria-labelledby="relationship-title">
@@ -120,10 +126,16 @@ export default async function Page() {
           <p>An experiment can return as a new thought.</p>
         </div>
 
-        <article className={styles.modeCard}>
-          <span className={styles.tapeLabel}>Lab</span>
+        <Link
+          className={`${styles.modeCard} ${styles.modeCardLab}`}
+          href="/lab"
+          aria-labelledby="lab-mode-label lab-mode-heading"
+        >
+          <span className={styles.tapeLabel} id="lab-mode-label">
+            Lab
+          </span>
           <div className={styles.modeContent}>
-            <h3>Building in public.</h3>
+            <h3 id="lab-mode-heading">Building in public.</h3>
             <p>Experiments, prototypes, and tools at different stages of development.</p>
             <ul>
               <li>Test ideas in practice</li>
@@ -131,7 +143,7 @@ export default async function Page() {
               <li>Keep what is useful, including failed attempts</li>
             </ul>
           </div>
-        </article>
+        </Link>
       </section>
 
       {latestUpdate ? (
