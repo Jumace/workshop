@@ -63,6 +63,26 @@ export function getContentReferencesByIds(ids: string[]) {
   return ids.map(getContentReferenceById);
 }
 
+export function getConnectedContentReferences(type: ContentKind, id: string) {
+  const reference = contentReferences.find((item) => item.type === type && item.metadata.id === id);
+
+  if (!reference) {
+    throw new Error(`Missing content id: ${id}`);
+  }
+
+  const otherType = type === "notebook" ? "lab" : "notebook";
+  const declaredIds = reference.metadata.related[otherType];
+  const inverseIds = contentReferences
+    .filter(
+      (item) =>
+        item.type === otherType && item.metadata.related[type].includes(reference.metadata.id),
+    )
+    .map((item) => item.metadata.id);
+  const ids = [...new Set([...declaredIds, ...inverseIds])];
+
+  return ids.map(getContentReferenceById).filter((item) => item.metadata.status === "published");
+}
+
 export function listContentSlugs(type: ContentKind) {
   return contentReferences
     .filter((reference) => reference.type === type)

@@ -1,6 +1,7 @@
 import { EditorialContentRow } from "@/app/components/content-row";
 import { MetadataRow, TagList } from "@/app/components/content-meta";
 import type { NotebookEntry } from "@/app/lib/content";
+import { getConnectedContentReferences } from "@/lib/content-metadata";
 import styles from "./post-list.module.css";
 
 export function PostList({
@@ -16,7 +17,7 @@ export function PostList({
 
   return (
     <div className={styles.list}>
-      {posts.map((post) => (
+      {posts.map((post, index) => (
         <EditorialContentRow
           key={post.slug}
           href={post.href}
@@ -31,6 +32,8 @@ export function PostList({
             />
           }
           footer={<TagList tags={post.tags} />}
+          index={index + 1}
+          related={getConnectedContentReferences("notebook", post.id)}
         />
       ))}
     </div>

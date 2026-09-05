@@ -164,7 +164,7 @@ textarea {
   letter-spacing: -0.045em;
 }
 
-.sectionHeader .tapeHeading {
+.tapeHeading {
   --tape-color: #e3dac6;
   --tape-ink: #171814;
   --tape-angle: -0.7deg;
@@ -226,7 +226,7 @@ textarea {
   filter: drop-shadow(0 2px 1px rgb(0 0 0 / 24%)) drop-shadow(0 4px 7px rgb(0 0 0 / 14%));
 }
 
-.sectionHeader .tapeHeading::after {
+.tapeHeading::after {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -283,7 +283,8 @@ textarea {
 
 .prose h1,
 .prose h2,
-.prose h3 {
+.prose h3,
+.tapeSubheading {
   scroll-margin-top: 7rem;
   color: var(--text);
   font-family: var(--font-editorial), Georgia, serif;
@@ -305,7 +306,8 @@ textarea {
   font-size: clamp(2.4rem, 6vw, 4.7rem);
 }
 
-.prose h2 {
+.prose h2,
+.tapeSubheading {
   position: relative;
   display: inline-block;
   isolation: isolate;
@@ -321,7 +323,8 @@ textarea {
   transform: rotate(-0.7deg);
 }
 
-.prose h2::before {
+.prose h2::before,
+.tapeSubheading::before {
   position: absolute;
   inset: 0;
   z-index: -1;

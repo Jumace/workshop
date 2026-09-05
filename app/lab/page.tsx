@@ -21,11 +21,9 @@ export default async function LabPage() {
       <PageIntro title="Lab" description="Where ideas take shape." variant="overview" />
       {entries.length > 0 ? (
         <section className={styles.section} aria-labelledby="lab-collection">
-          <div className="sectionHeader">
-            <h2 id="lab-collection" className="tapeHeading">
-              Latest tinkering
-            </h2>
-          </div>
+          <h2 id="lab-collection" className={styles.visuallyHidden}>
+            Lab collection
+          </h2>
           <LabList entries={entries} />
         </section>
       ) : null}

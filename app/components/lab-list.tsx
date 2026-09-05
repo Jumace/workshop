@@ -1,6 +1,7 @@
 import { EditorialContentRow } from "@/app/components/content-row";
 import { LabStateLabel, MetadataRow, TagList } from "@/app/components/content-meta";
 import type { LabEntry } from "@/app/lib/content";
+import { getConnectedContentReferences } from "@/lib/content-metadata";
 import styles from "./lab-list.module.css";
 
 export function LabList({ entries }: { entries: LabEntry[] }) {
@@ -10,7 +11,7 @@ export function LabList({ entries }: { entries: LabEntry[] }) {
 
   return (
     <div className={styles.list}>
-      {entries.map((entry) => (
+      {entries.map((entry, index) => (
         <EditorialContentRow
           key={entry.slug}
           href={entry.href}
@@ -27,6 +28,8 @@ export function LabList({ entries }: { entries: LabEntry[] }) {
             entry.project.currentQuestion ? <>Question: {entry.project.currentQuestion}</> : null
           }
           footer={<TagList tags={entry.tags} />}
+          index={index + 1}
+          related={getConnectedContentReferences("lab", entry.id)}
         />
       ))}
     </div>
