@@ -21,11 +21,9 @@ export default async function NotebookPage() {
       <PageIntro title="Notebook" description="What the code leaves out." variant="overview" />
       {posts.length > 0 ? (
         <section className={styles.section} aria-labelledby="notebook-collection">
-          <div className="sectionHeader">
-            <h2 id="notebook-collection" className="tapeHeading">
-              Recent thoughts
-            </h2>
-          </div>
+          <h2 id="notebook-collection" className={styles.visuallyHidden}>
+            Notebook collection
+          </h2>
           <PostList posts={posts} />
         </section>
       ) : null}

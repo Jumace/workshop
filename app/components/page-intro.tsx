@@ -20,7 +20,7 @@ export function PageIntro({
       className={variant === "overview" ? `${styles.intro} ${styles.overview}` : styles.intro}
     >
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h1>{title}</h1>
+      <h1 className={variant === "overview" ? "tapeSubheading" : undefined}>{title}</h1>
       {description ? <p className={styles.description}>{description}</p> : null}
       {meta ? <div className={styles.meta}>{meta}</div> : null}
     </header>
