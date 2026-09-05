@@ -3,6 +3,9 @@ pre-commit:
   commands:
     format:
       glob: "*.{ts,tsx,js,jsx,json,md,mdx,css,yml,yaml}"
+      exclude:
+        - app/lib/content.generated.ts
+        - lib/content-metadata.generated.ts
       run: pnpm exec oxfmt --write {staged_files} && git add {staged_files}
     spelling:
       glob: "*.{md,mdx}"
